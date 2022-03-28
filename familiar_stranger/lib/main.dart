@@ -1,7 +1,12 @@
+import 'package:familiar_stranger/Screen/Home/Home.dart';
+import 'package:familiar_stranger/Screen/Login/login.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/Profile.dart';
 import 'package:familiar_stranger/Screen/Welcome/Welcome.dart';
 import 'package:familiar_stranger/constant.dart';
-import 'package:flutter/material.dart';
+import 'package:familiar_stranger/Component/NavBar/Route.dart' as route;
 
+import 'package:flutter/material.dart';
+ 
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +24,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Background_Color,
         fontFamily: 'Roboto', 
       ),
-      home: Welcome_Screen(),
+      home: Login_Screen(),//Welcome_Screen(),
+      onGenerateRoute: route.controller,
+      //change to edit screen, when all done, comment this line again
+      initialRoute: route.home,
     );
   }
 }

@@ -19,6 +19,8 @@ class Rounded_TextField_Center extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField_Container(
       child: TextField(
+      maxLines: 1,
+      minLines: 1,
       obscureText: IsPassword,
       keyboardType: textInputType,
       textAlign: TextAlign.center,
@@ -26,13 +28,14 @@ class Rounded_TextField_Center extends StatelessWidget {
       style: TextStyle(color: Main_Text, fontSize: 18, fontWeight: FontWeight.bold),
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: Border_Color, width: 2.0),
-          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Border_Color, width: 2.0), borderRadius: BorderRadius.circular(10.0),
         ), 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Border_Color, width: 2.0,),
         ),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Border_Color, width: 2.0,),),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Border_Color, width: 2.0,),
+        ),
         hintText: hint, hintStyle: TextStyle(color: Sub_Text, fontSize: 15),
         fillColor: Colors.transparent,
     ),

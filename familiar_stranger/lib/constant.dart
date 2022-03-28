@@ -19,3 +19,15 @@ const Report_Friend = Colors.red;
 //Icon
 const people_icon = Icons.people;
 const lock_icon = Icons.lock;
+//Timer
+
+//Variable for account
+String user_phonenumber = "";
+String password = "";
+String change_password = "";
+String account_name = "";
+bool sex_male = true;
+int age = 0;
+String UID = "00000000";
+// String wallpaper_link = "";
+String avatar_link = "";

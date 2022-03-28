@@ -24,13 +24,13 @@ class SignUp_Body extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: size.height*0.32,),
           Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword: false,hint: "PhoneNumber",onchanged: (value){PhoneNumber = value;},),
-          SizedBox(height: size.height*0.015,),
+          SizedBox(height: size.height*0.005,),
           Rounded_TextField_Center(textInputType: TextInputType.none,IsPassword: true,hint: "Password",onchanged: (value){Password = value;},),
-          SizedBox(height: size.height*0.015,),
+          SizedBox(height: size.height*0.005,),
           Rounded_TextField_Center(textInputType: TextInputType.none,IsPassword: true,hint: "Retype Password",onchanged: (value){RetypePassword = value;},),
-          SizedBox(height: size.height*0.05,),
+          SizedBox(height: size.height*0.01,),
           Rounded_Border_Button(horizon: 30.0, verti: 15.0,text: "SIGN UP", bordercolor: Border_Color, textcolor: Sub_Text, press: (){}),
-          SizedBox(height: size.height*0.05,),
+          SizedBox(height: size.height*0.02,),
           Check_LogIn_Or_SignUp( 
             login: false,
             press: (){Navigator.push(context, MaterialPageRoute(builder: (context){return Login_Screen();},
