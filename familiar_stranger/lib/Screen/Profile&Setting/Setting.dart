@@ -1,4 +1,4 @@
-import 'package:familiar_stranger/Screen/Profile&Setting/component/Setting_Body.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/component/setting_Body.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:familiar_stranger/Component/NavBar/Route.dart' as route;
+import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
 
 class Nav_Bar extends StatelessWidget {
   const Nav_Bar({ Key? key }) : super(key: key);

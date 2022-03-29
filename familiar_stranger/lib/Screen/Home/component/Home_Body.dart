@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:familiar_stranger/Screen/Home/component/Home_BG.dart';
+import 'package:familiar_stranger/Screen/Home/component/home_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 

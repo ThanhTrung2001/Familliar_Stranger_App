@@ -1,6 +1,6 @@
-import 'package:familiar_stranger/Component/Button/Rounded_Border.dart';
+import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
 import 'package:familiar_stranger/Screen/Login/login.dart';
-import 'package:familiar_stranger/Screen/Welcome/component/Welcome_BG.dart';
+import 'package:familiar_stranger/Screen/Welcome/component/welcome_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 

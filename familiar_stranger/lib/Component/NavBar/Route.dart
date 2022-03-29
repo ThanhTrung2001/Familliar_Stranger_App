@@ -1,6 +1,6 @@
-import 'package:familiar_stranger/Screen/Home/Home.dart';
-import 'package:familiar_stranger/Screen/Profile&Setting/Profile.dart';
-import 'package:familiar_stranger/Screen/Profile&Setting/Setting.dart';
+import 'package:familiar_stranger/Screen/Home/home.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/profile.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/setting.dart';
 import 'package:flutter/material.dart';
 
 //Route's Name

@@ -1,5 +1,5 @@
-import 'package:familiar_stranger/Component/NavBar/Navbar.dart';
-import 'package:familiar_stranger/Screen/Home/component/Home_Body.dart';
+import 'package:familiar_stranger/Component/NavBar/navbar.dart';
+import 'package:familiar_stranger/Screen/Home/component/home_Body.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 

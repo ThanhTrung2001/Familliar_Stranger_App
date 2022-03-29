@@ -1,4 +1,4 @@
-import 'package:familiar_stranger/Screen/Login/component/body/Verify_Body.dart';
+import 'package:familiar_stranger/Screen/Login/component/body/verify_Body.dart';
 import 'package:flutter/material.dart';
 
 class Verify_Screen extends StatelessWidget {

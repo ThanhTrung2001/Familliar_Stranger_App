@@ -1,9 +1,9 @@
-import 'package:familiar_stranger/Component/Button/Rounded_Border.dart';
-import 'package:familiar_stranger/Component/Divider/OrDivider.dart';
-import 'package:familiar_stranger/Component/TextField/Login/Rounded_TextField_Center.dart';
-import 'package:familiar_stranger/Screen/Login/Login.dart';
-import 'package:familiar_stranger/Screen/Login/VerifyCode.dart';
-import 'package:familiar_stranger/Screen/Login/component/Login_BG.dart';
+import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
+import 'package:familiar_stranger/Component/Divider/orDivider.dart';
+import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
+import 'package:familiar_stranger/Screen/Login/login.dart';
+import 'package:familiar_stranger/Screen/Login/verifyCode.dart';
+import 'package:familiar_stranger/Screen/Login/component/login_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 
