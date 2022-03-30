@@ -1,6 +1,6 @@
 import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
-import 'package:familiar_stranger/Component/Notification/dialog_Custom_Loading.dart';
-import 'package:familiar_stranger/Component/Notification/dialog_Custom_NoButton.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_Loading.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_NoButton.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Input.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Password.dart';
 import 'package:familiar_stranger/Screen/Login/signup.dart';

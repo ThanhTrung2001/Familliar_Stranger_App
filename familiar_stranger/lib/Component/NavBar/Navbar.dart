@@ -1,4 +1,4 @@
-import 'package:familiar_stranger/Component/Notification/dialog_Custom_LogOut.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
