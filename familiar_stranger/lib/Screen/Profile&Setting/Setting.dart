@@ -17,9 +17,7 @@ class Setting_Screen extends StatelessWidget {
         centerTitle: true,
         ),  
       ),
-      body: SingleChildScrollView( 
-      child: Setting_Body(),
-      ),
+      body:  Setting_Body(),
     );
   }
 }

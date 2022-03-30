@@ -1,4 +1,7 @@
+import 'package:familiar_stranger/Component/Button/dialog_Button.dart';
 import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_OneTextField.dart';
+import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
@@ -8,6 +11,7 @@ class Nav_Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Drawer(
       
       child: Container(
@@ -63,7 +67,10 @@ class Nav_Bar extends StatelessWidget {
               contentPadding: EdgeInsets.only(left: 35, top: 10),
               leading: Icon(Icons.people, color: Main_Text,),
               title: Text("Friends", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
-              onTap: () {},
+              onTap: () {
+                showDialog(context: context, builder: (context){ return Dialog_Input_One(press_yes: (){print(UIDFriend);});});
+              },
+                
             ),
           
             ListTile(

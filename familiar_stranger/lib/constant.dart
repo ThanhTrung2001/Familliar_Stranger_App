@@ -24,10 +24,14 @@ const lock_icon = Icons.lock;
 //Variable for account
 String user_phonenumber = "";
 String password = "";
+String old_password = "";
 String change_password = "";
+String retype_password = "";
 String account_name = "";
 bool sex_male = true;
 int age = 0;
 String UID = "00000000";
 // String wallpaper_link = "";
 String avatar_link = "";
+//Friend
+String UIDFriend = ""; // Get from Dialog_Input_One

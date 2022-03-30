@@ -1,5 +1,4 @@
-import 'package:familiar_stranger/Component/Button/Dialog_Button.dart';
-import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
+import 'package:familiar_stranger/Component/Button/dialog_Button.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 

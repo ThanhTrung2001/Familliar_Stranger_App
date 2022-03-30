@@ -1,6 +1,7 @@
 import 'package:familiar_stranger/Component/Button/borderRounded_Female_Icon_Button.dart';
 import 'package:familiar_stranger/Component/Button/borderRounded_Male_Icon_Button.dart';
 import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_ThreeTF.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.dart';
 import 'package:familiar_stranger/constant.dart';
@@ -101,9 +102,9 @@ class _Profile_BodyState extends State<Profile_Body> {
                     children: <Widget>[
                     SizedBox(width: size.width * 0.086,),
                     Text("Sex :", style: TextStyle(color: Main_Text, fontWeight: FontWeight.bold, fontSize: 17),),
-                    SizedBox(width: size.width * 0.04,),
+                    SizedBox(width: size.width * 0.015,),
                     Border_Male_Icon_Button(bordercolor: Border_Color, iconcolor: Colors.blue, press: isMale, icon_size: 25, backgroundcolor: (set_male == true)? bGColorMale : Colors.transparent,),
-                    SizedBox(width: size.width * 0.05,),
+                    SizedBox(width: size.width * 0.03,),
                     Border_Female_Icon_Button(bordercolor: Border_Color, iconcolor: Colors.red, press: isFemale, icon_size: 25, backgroundcolor: (set_male == false)? bGCOlorFemale : Colors.transparent,),
                     ],
                     ),
@@ -123,7 +124,9 @@ class _Profile_BodyState extends State<Profile_Body> {
               Container(
                 padding: EdgeInsets.all(10),
                 child: GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    showDialog(context: context, builder: (context){ return Dialog_Input_Three(press_yes: (){print(old_password); print(change_password); print(retype_password);});});
+                  },
                   child: Text(
                       "Change password?",
                       style: TextStyle(color: Sub_Text, fontWeight: FontWeight.bold,) ,),

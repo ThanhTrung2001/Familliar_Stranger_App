@@ -32,9 +32,7 @@ class Home_Screen extends StatelessWidget {
         ],
         ),  
       ),
-      body: SingleChildScrollView( 
-      child: Home_Body(),
-      ),
+      body:  Home_Body(),
     );
   }
 }

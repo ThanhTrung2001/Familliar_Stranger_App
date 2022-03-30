@@ -31,9 +31,7 @@ class Profile_Screen extends StatelessWidget {
         ],
         ),  
       ),
-      body: SingleChildScrollView( 
-      child: Profile_Body(),
-      ),
+      body: Profile_Body(),
     );
   }
 }
