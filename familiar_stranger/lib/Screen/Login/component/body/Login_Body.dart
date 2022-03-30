@@ -1,4 +1,5 @@
 import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
+import 'package:familiar_stranger/Component/Notification/dialog_Custom_Loading.dart';
 import 'package:familiar_stranger/Component/Notification/dialog_Custom_NoButton.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Input.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Password.dart';
@@ -27,7 +28,23 @@ class Login_Body extends StatelessWidget {
           SizedBox(height: size.height*0.015,),
           Rounded_TextField_Password(label: "Password",onchanged: (value){Password = value;},),
           SizedBox(height: size.height*0.05,),
-          Rounded_Border_Button(horizon: 30.0, verti: 15.0,text: "LOG IN", bordercolor: Border_Color, textcolor: Sub_Text, press: (){showDialog(context: context, builder: (context) => Dialog_Custom(dialog_content: "That Phonenumber has Registerd!", dialog_image_link: 'assets/Icons/Cancel.png',));}),
+          //Login Event and Dialog_Loading, Error, Success showing
+          Rounded_Border_Button(
+            horizon: 30.0, 
+            verti: 15.0,
+            text: "LOG IN",
+            bordercolor: Border_Color,
+            textcolor: Sub_Text,
+              press: (){
+                showDialog(
+                  barrierDismissible: false, // this one prevent closing Dialog when click outside
+                  context: context,
+                  builder: (context) {
+              //Time delay for Loading Dialog to get the result from login
+                Future.delayed(Duration(seconds: 5), (){
+                Navigator.of(context).pop();
+                });
+                return Dialog_Custom_Loading(dialog_content: "Loading...", dialog_image_link: 'assets/Icons/Loading_Sign.png',);});}),
           SizedBox(height: size.height*0.05,),
           Check_LogIn_Or_SignUp( 
             press: (){Navigator.push(context, MaterialPageRoute(builder: (context){return SignUp_Screen();},

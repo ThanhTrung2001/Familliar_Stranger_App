@@ -8,7 +8,9 @@ class Forget_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Forget_Body(),
+      body: SingleChildScrollView( 
+      child: Forget_Body(),
+      ),
     );
   }
 }

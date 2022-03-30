@@ -8,7 +8,9 @@ class Verify_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Verify_Body(),
+      body: SingleChildScrollView( 
+      child: Verify_Body(),
+      ),
     );
   }
 }

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       home: Login_Screen(),//Welcome_Screen(),
       onGenerateRoute: route.controller,
       //change to edit screen, when all done, comment this line again
-      // initialRoute: route.home,
+      initialRoute: route.home,
     );
   }
 }

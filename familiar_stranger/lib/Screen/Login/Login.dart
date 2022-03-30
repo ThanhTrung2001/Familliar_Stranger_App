@@ -8,7 +8,9 @@ class Login_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Login_Body(),
+      body: SingleChildScrollView( 
+      child: Login_Body(),
+      ),
     );
   }
 }

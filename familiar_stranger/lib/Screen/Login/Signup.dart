@@ -8,7 +8,9 @@ class SignUp_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SignUp_Body(),
+      body: SingleChildScrollView( 
+      child: SignUp_Body(),
+      ),
     );
   }
 }

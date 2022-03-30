@@ -7,7 +7,9 @@ class Welcome_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Welcome_Body(),
+      body: SingleChildScrollView( 
+      child: Welcome_Body(),
+      ),
     );
   }
 }

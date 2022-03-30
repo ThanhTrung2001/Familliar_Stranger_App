@@ -1,3 +1,4 @@
+import 'package:familiar_stranger/Component/Notification/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
@@ -81,7 +82,9 @@ class Nav_Bar extends StatelessWidget {
               contentPadding: EdgeInsets.only(left: 35, top: 10),
               leading: Icon(Icons.logout_outlined, color: Main_Text,),
               title: Text("Log Out", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
-              onTap: () {},
+              onTap: () {
+                showDialog(context: context, builder: (context){ return Dialog_LogOut(press_yes: (){});});
+              },
             ),
           ],
         ),
