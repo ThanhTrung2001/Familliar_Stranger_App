@@ -29,8 +29,7 @@ class Dialog_AcceptInvite extends StatelessWidget {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset('assets/Icons/Ok_Hand.png'),
-        SizedBox(height: 10,),
+        Image.asset('assets/Icons/Ok_Hand.png', height: 100, width: 100,),
         Text("Opponent found! Join room?", style: TextStyle(fontFamily: 'ZenDots', fontSize: 20, color: Main_Text),textAlign: TextAlign.center,),
         Padding(
           padding: EdgeInsets.only(top: 40, right: 10, left: 10, bottom: 20),

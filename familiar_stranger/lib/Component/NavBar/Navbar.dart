@@ -63,9 +63,7 @@ class Nav_Bar extends StatelessWidget {
               contentPadding: EdgeInsets.only(left: 35, top: 10),
               leading: Icon(Icons.people, color: Main_Text,),
               title: Text("Friends", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
-              onTap: () {
-                showDialog(context: context, builder: (context){ return Dialog_AcceptInvite(press_yes: (){},);});
-              },
+              onTap: () => Navigator.pushNamed(context, route.friend),
                 
             ),
           
@@ -80,7 +78,7 @@ class Nav_Bar extends StatelessWidget {
               leading: Icon(Icons.logout_outlined, color: Main_Text,),
               title: Text("Log Out", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
               onTap: () {
-                showDialog(context: context, builder: (context){ return Dialog_LogOut(press_yes: (){});});
+                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){});});
               },
             ),
           ],

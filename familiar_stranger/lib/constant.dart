@@ -1,3 +1,4 @@
+import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:flutter/material.dart';
 
 
@@ -35,3 +36,4 @@ String UID = "00000000";
 String avatar_link = "";
 //Friend
 String UIDFriend = ""; // Get from Dialog_Input_One
+//select

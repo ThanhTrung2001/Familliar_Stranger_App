@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class Dialog_LogOut extends StatelessWidget {
   final VoidCallback press_yes;
+  final String title;
   const Dialog_LogOut({ 
     Key? key,
+    required this.title,
     required this.press_yes,
     }) : super(key: key);
 
@@ -29,7 +31,7 @@ class Dialog_LogOut extends StatelessWidget {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text("Log Out?", style: TextStyle(fontFamily: 'ZenDots', fontSize: 20, color: Main_Text),textAlign: TextAlign.center,),
+        Text(title, style: TextStyle(fontFamily: 'ZenDots', fontSize: 20, color: Main_Text),textAlign: TextAlign.center,),
         Padding(
           padding: EdgeInsets.only(top: 40, right: 10, left: 10, bottom: 20),
           child: Row(
