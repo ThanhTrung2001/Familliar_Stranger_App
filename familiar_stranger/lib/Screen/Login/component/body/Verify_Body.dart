@@ -12,7 +12,6 @@ class Verify_Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    String Code;
     return Login_BG(
       child: Column(
          mainAxisAlignment: MainAxisAlignment.center,
@@ -23,7 +22,7 @@ class Verify_Body extends StatelessWidget {
                       child: Text("Please Enter the Code that have send to your phone :",style: TextStyle(color: Main_Text, fontSize: 14, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                     ),
           SizedBox(height: size.height*0.15,),          
-          Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword : true,hint: "_ _ _ _" ,onchanged: (value){Code = value;},),
+          Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword : true,hint: "_ _ _ _" ,onchanged: (value){VerifyCode = value;},),
           SizedBox(height: size.height*0.025,),
           Rounded_Border_Button(text: "VERIFY", bordercolor: Border_Color, textcolor: Main_Text, press: (){}, horizon: 30.0, verti: 15.0),
           OrDivider(),

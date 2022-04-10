@@ -38,17 +38,17 @@ class _Media_BodyState extends State<Media_Body> {
             height: size.height * 0.05,
           ),
           Container(
-            height: size.height * 0.3,
+            height: size.height * 0.32,
             decoration: BoxDecoration(
               color: Sub_Text,
-              borderRadius: BorderRadius.circular(200.0),
+              shape: BoxShape.circle,
             ),
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: CircleAvatar(
                 backgroundImage:
                     NetworkImage('https://i.imgur.com/DSG7rkv.jpg'),
-                radius: 120.0,
+                radius: 200.0,
               ),
             ),
           ),
@@ -76,8 +76,8 @@ class _Media_BodyState extends State<Media_Body> {
             decoration: BoxDecoration(
               color: Color.fromARGB(150, 116, 88, 116),
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
+            child: Container(
+              // padding: const EdgeInsets.only(top : 10.0, bottom: 10 ),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -93,10 +93,10 @@ class _Media_BodyState extends State<Media_Body> {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: FloatingActionButton(
                         backgroundColor: Sub_Text,
                         mini: true,
@@ -117,7 +117,7 @@ class _Media_BodyState extends State<Media_Body> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: FloatingActionButton(
                         backgroundColor: Sub_Text,
                         mini: true,
@@ -129,7 +129,7 @@ class _Media_BodyState extends State<Media_Body> {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     FloatingActionButton(
                       hoverColor: Colors.black,

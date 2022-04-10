@@ -14,7 +14,6 @@ class Forget_Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Phone Number Forget
-    String PhoneNumber;
     return Login_BG(
       child: Column(
          mainAxisAlignment: MainAxisAlignment.center,

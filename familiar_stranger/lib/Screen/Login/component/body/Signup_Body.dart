@@ -15,9 +15,7 @@ class SignUp_Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Input-Username & Password
-    String PhoneNumber;
-    String Password;
-    String RetypePassword;
+    
     return Login_BG(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -25,11 +23,11 @@ class SignUp_Body extends StatelessWidget {
           SizedBox(height: size.height*0.32,),
           Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword: false,hint: "PhoneNumber",onchanged: (value){PhoneNumber = value;},),
           SizedBox(height: size.height*0.005,),
-          Rounded_TextField_Center(textInputType: TextInputType.none,IsPassword: true,hint: "Password",onchanged: (value){Password = value;},),
+          Rounded_TextField_Center(textInputType: TextInputType.visiblePassword,IsPassword: true,hint: "Password",onchanged: (value){Password = value; print(Password);},),
           SizedBox(height: size.height*0.005,),
-          Rounded_TextField_Center(textInputType: TextInputType.none,IsPassword: true,hint: "Retype Password",onchanged: (value){RetypePassword = value;},),
+          Rounded_TextField_Center(textInputType: TextInputType.visiblePassword,IsPassword: true,hint: "Retype Password",onchanged: (value){RetypePassword = value;},),
           SizedBox(height: size.height*0.01,),
-          Rounded_Border_Button(horizon: 30.0, verti: 15.0,text: "SIGN UP", bordercolor: Border_Color, textcolor: Sub_Text, press: (){}),
+          Rounded_Border_Button(horizon: 30.0, verti: 15.0,text: "SIGN UP", bordercolor: Border_Color, textcolor: Sub_Text, press: (){ print( PhoneNumber + " " + Password + " " + RetypePassword );}),
           SizedBox(height: size.height*0.02,),
           Check_LogIn_Or_SignUp( 
             login: false,

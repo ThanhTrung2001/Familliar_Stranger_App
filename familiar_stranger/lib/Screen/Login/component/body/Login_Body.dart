@@ -16,9 +16,7 @@ class Login_Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Input-Username & Password
-    String PhoneNumber;
-    String Password;
-    String image = 'assets/Icons/Cancel.png';
+
     return Login_BG(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,15 +34,18 @@ class Login_Body extends StatelessWidget {
             bordercolor: Border_Color,
             textcolor: Sub_Text,
               press: (){
-                showDialog(
-                  barrierDismissible: false, // this one prevent closing Dialog when click outside
-                  context: context,
-                  builder: (context) {
-              //Time delay for Loading Dialog to get the result from login
-                Future.delayed(Duration(seconds: 5), (){
-                Navigator.of(context).pop();
-                });
-                return Dialog_Custom_Loading(dialog_content: "Loading...", dialog_image_link: 'assets/Icons/Loading_Sign.png',);});}),
+                print (PhoneNumber + " " +Password);
+              //   showDialog(
+              //     barrierDismissible: false, // this one prevent closing Dialog when click outside
+              //     context: context,
+              //     builder: (context) {
+              // //Time delay for Loading Dialog to get the result from login
+              //   Future.delayed(Duration(seconds: 5), (){
+              //   Navigator.of(context).pop();
+              //   });
+              //   return Dialog_Custom_Loading(dialog_content: "Loading...", dialog_image_link: 'assets/Icons/Loading_Sign.png',);});
+                }),
+
           SizedBox(height: size.height*0.05,),
           Check_LogIn_Or_SignUp( 
             press: (){Navigator.push(context, MaterialPageRoute(builder: (context){return SignUp_Screen();},

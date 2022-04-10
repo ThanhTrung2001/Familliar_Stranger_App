@@ -22,6 +22,15 @@ const people_icon = Icons.people;
 const lock_icon = Icons.lock;
 //Timer
 
+
+
+
+//SignUp, SignIn, Forget and Verify
+String PhoneNumber = "";
+String Password = "";
+String RetypePassword = "";
+String VerifyCode = "";
+
 //Variable for account
 String user_phonenumber = "";
 String password = "";
@@ -37,3 +46,4 @@ String avatar_link = "";
 //Friend
 String UIDFriend = ""; // Get from Dialog_Input_One
 //select
+
