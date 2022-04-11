@@ -81,8 +81,8 @@ class _Profile_BodyState extends State<Profile_Body> {
                     SizedBox(width: size.width * 0.06,),
                     Text("Name :", style: TextStyle(color: Main_Text, fontWeight: FontWeight.bold, fontSize: 17),),
                     Container(
-                      width: 330,
-                      height: 70,
+                      width: 280,
+                      height: 50,
                       child: Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword: false,hint: "",onchanged: (value){account_name = value;},)
                       ),
                     ],

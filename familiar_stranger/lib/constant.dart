@@ -44,6 +44,18 @@ String UID = "00000000";
 // String wallpaper_link = "";
 String avatar_link = "";
 //Friend
-String UIDFriend = ""; // Get from Dialog_Input_One
+String UIDFriend = "00000001";
+String FriendName = "Fukuro";
+bool Friend_sex_male = false;
+int FriendAge = 20; 
+const female_icon_color = Colors.red;
+const male_icon_color = Colors.green;
+ // Get from Dialog_Input_One
 //select
 
+//report checkbox
+bool cb1 = false;
+bool cb2 = false;
+bool cb3 = false;
+bool cb4 = false;
+String report_other = "";
