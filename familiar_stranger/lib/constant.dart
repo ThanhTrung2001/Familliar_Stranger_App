@@ -1,6 +1,6 @@
-import 'package:familiar_stranger/Model_Test/user_model.dart';
+// import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:familiar_stranger/models/user.dart';
 
 //Background
 const Background_Color = Colors.black;
@@ -23,7 +23,8 @@ const lock_icon = Icons.lock;
 //Timer
 
 
-
+//Models
+User user = const User(id: '', phoneNumber: '',token: '');
 
 //SignUp, SignIn, Forget and Verify
 String PhoneNumber = "";
@@ -39,10 +40,12 @@ String change_password = "";
 String retype_password = "";
 String account_name = "";
 bool sex_male = true;
-int age = 0;
+String age = '0';
 String UID = "00000000";
 // String wallpaper_link = "";
 String avatar_link = "";
+//select
+
 //Friend
 String UIDFriend = "00000001";
 String FriendName = "Fukuro";
