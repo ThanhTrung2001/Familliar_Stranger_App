@@ -1,15 +1,17 @@
-import 'package:familiar_stranger/Model_Test/user_model.dart';
+//import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/Media_Body.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_Body.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friendList.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Screen extends StatefulWidget {
-  final User user;
+  //
+  final User targetUser;
   const ChatRoom_Screen({
     Key? key,
-    required this.user,
+    required this.targetUser,
   }) : super(key: key);
   @override
   State<ChatRoom_Screen> createState() => _ChatRoom_ScreenState();
@@ -57,7 +59,7 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
           body: TabBarView(
             children: <Widget>[
               ChatRoom_Body(
-                user: widget.user,
+                targetUser: widget.targetUser,
               ),
               Media_Body(),
             ],

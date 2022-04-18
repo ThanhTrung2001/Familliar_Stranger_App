@@ -64,7 +64,7 @@ class _Profile_BodyState extends State<Profile_Body> {
     }
 
     var response = await http.post(
-      Uri.http('192.168.1.20:3000', 'user/'+user.id+'/updateinfo'),
+      Uri.http(addressIP, 'user/' + user.id + '/updateinfo'),
       body: ({
         'username': username,
         'age': age,

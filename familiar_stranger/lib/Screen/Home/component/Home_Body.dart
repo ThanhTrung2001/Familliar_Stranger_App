@@ -1,8 +1,14 @@
 import 'dart:async';
 
+import 'package:familiar_stranger/Screen/ChatRoom/ChatRoom.dart';
 import 'package:familiar_stranger/Screen/Home/component/home_BG.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/user.dart';
+import 'package:familiar_stranger/models/message.dart';
 import 'package:flutter/material.dart';
+
+import 'package:socket_io_client/socket_io_client.dart' as socketio;
+
 
 class Home_Body extends StatefulWidget {
   const Home_Body({Key? key}) : super(key: key);
@@ -12,18 +18,52 @@ class Home_Body extends StatefulWidget {
 }
 
 class _Home_BodyState extends State<Home_Body> {
+
+    //late socketio.Socket socket;
+
+  void connectSocket() {
+    socket = socketio.io('http://192.168.9.91:3000', <String, dynamic>{
+      'transports':['websocket'],
+      'autoConnect': false,
+    });
+    socket.connect();
+    socket.emit('sigin', user.id);
+    socket.onConnect((data) {
+      print('Connected');
+      socket.on('message',(data){
+        print(data['sourceId']);
+        //messages.add(Message(senderId: data['sourceId'], time: 'time', text: 'text'));
+        Message messageModel = messages[0];
+        print(messageModel);
+      });
+    });
+  }
+
+  void toConversation(){
+    socket.on('toConversation', (targetUser){
+      Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
+    });
+  }
+
   //Press Button
   bool start = true;
   void press_start() {
-    setState(() {
-      start = !start;
-      if (start == false) {
-        startTimer();
-      } else {
-        Reset();
-        setState(() => timer?.cancel());
-      }
-    });
+    connectSocket();
+    //print(targetUser.id);
+    Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
+    
+    //Navigator.push(context, route);
+    // setState(() {
+    //   start = !start;
+    //   if (start == false) {
+    //     socket.emit("connectId",user.id);
+    //     startTimer();
+    //   } else {
+    //     socket.emit("deleteId",user.id);
+    //     Reset();
+    //     setState(() => timer?.cancel());
+    //   }
+    // });
   }
 
   //Timer

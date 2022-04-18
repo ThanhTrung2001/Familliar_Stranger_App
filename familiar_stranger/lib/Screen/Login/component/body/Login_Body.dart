@@ -20,7 +20,7 @@ class Login_Body extends StatelessWidget {
 
   Future<bool> submitLogin(phoneNumber, password) async {
     var response = await http.post(
-      Uri.http('192.168.1.20:3000', 'user/login'),
+      Uri.http(addressIP, 'user/login'),
       body: ({
         'phonenumber': phoneNumber,
         'password': password
@@ -60,8 +60,8 @@ class Login_Body extends StatelessWidget {
             textcolor: Sub_Text,
               press: () async {
                 print (PhoneNumber + " " +Password);
-                if(await submitLogin(PhoneNumber, Password) == true){
-                  print(user.avatarUrl);
+                if(await submitLogin('0938085588', '123456') == true){
+                  print(user.id);
                     showDialog(
                       barrierDismissible: false, // this one prevent closing Dialog when click outside
                       context: context,

@@ -20,7 +20,7 @@ class SignUp_Body extends StatelessWidget {
 
     Future<void> submitSignUp(phoneNumber, password) async {
     var response = await http.post(
-      Uri.http('192.168.1.20:3000', 'user/signup'),
+      Uri.http(addressIP, 'user/signup'),
       body: ({
         'phonenumber': phoneNumber,
         'password': password,

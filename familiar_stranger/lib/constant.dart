@@ -1,6 +1,10 @@
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
+import 'package:socket_io_client/socket_io_client.dart' as socketio;
+
+//Socket
+late socketio.Socket socket;
 
 //Background
 const Background_Color = Colors.black;
@@ -62,3 +66,7 @@ bool cb2 = false;
 bool cb3 = false;
 bool cb4 = false;
 String report_other = "";
+
+
+///Test Localhost
+String addressIP = '192.168.9.91:3000';

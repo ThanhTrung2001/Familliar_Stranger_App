@@ -83,22 +83,25 @@ class _FrindList_BodyState extends State<FrindList_Body> {
             SizedBox(
             ),
             //Call List friend 
-            Expanded(
-              child:ListView.separated(
-                itemCount: recentChats.length,
-                itemBuilder: (context, index) { 
-                  final select = recentChats[index];
-                  return Friend_Model(avatar: select.sender.avatar,userName: select.sender.name,status: "Free" , tap: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => ChatRoom_Screen(user: select.sender,)));},);},
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      height: 3,
-                      indent: 30,
-                      endIndent: 30,
-                      color: Sub_Text,
-                    );
-                  },
-                ),
-                ),
+            // Expanded(
+            //   child:ListView.separated(
+            //     itemCount: recentChats.length,
+            //     itemBuilder: (context, index) { 
+            //       final select = recentChats[index];
+            //       return Friend_Model(avatar: select.sender.avatar,userName: select.sender.name,status: "Free",
+            //       tap: (){
+            //         //Navigator.push(context, MaterialPageRoute(builder: (context) => ChatRoom_Screen(user: select.sender,)));
+            //         },);},
+            //       separatorBuilder: (context, index) {
+            //         return Divider(
+            //           height: 3,
+            //           indent: 30,
+            //           endIndent: 30,
+            //           color: Sub_Text,
+            //         );
+            //       },
+            //     ),
+            //     ),
         ],
       ),
     );

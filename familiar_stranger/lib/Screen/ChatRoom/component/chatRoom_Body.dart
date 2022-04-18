@@ -1,16 +1,25 @@
-import 'package:familiar_stranger/Model_Test/user_model.dart';
+// import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/conversation.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/inputbar.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Body extends StatefulWidget {
-  final User user;
-  const ChatRoom_Body({Key? key, required this.user}) : super(key: key);
+  final User targetUser;
+  const ChatRoom_Body({Key? key, required this.targetUser}) : super(key: key);
 
   @override
   State<ChatRoom_Body> createState() => _ChatRoom_BodyState();
+}
+
+void sendMessage(String message, String sourceId, String targetId){
+  socket.emit('message',{
+    "message": message,
+    "sourceId": sourceId,
+    "targetId":targetId
+  });
 }
 
 class _ChatRoom_BodyState extends State<ChatRoom_Body> {
@@ -38,7 +47,7 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
-                  child: Conservation(user: widget.user), //Get conservation
+                  child: Conservation(targetUser: widget.targetUser), //Get conservation
                 ),
               ),
             ),
@@ -107,7 +116,8 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                   ),
                   IconButton(
                     onPressed: () {
-                      print(widget.user.name);
+                      sendMessage('message', user.id, targetUser.id);
+                      //print('ok');
                     },
                     icon: Icon(
                       Icons.send,

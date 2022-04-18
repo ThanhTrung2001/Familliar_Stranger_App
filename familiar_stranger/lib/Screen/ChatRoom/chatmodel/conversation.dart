@@ -1,15 +1,31 @@
-import 'package:familiar_stranger/Model_Test/message_model.dart';
-import 'package:familiar_stranger/Model_Test/user_model.dart';
+// import 'package:familiar_stranger/Model_Test/message_model.dart';
+// import 'package:familiar_stranger/Model_Test/user_model.dart';
+// import 'package:familiar_stranger/Model_Test/message_model.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
-
+import 'package:familiar_stranger/models/user.dart';
+import 'package:familiar_stranger/models/message.dart';
 
 //This class is dessign for every chatline in the chatroom
-class Conservation extends StatelessWidget {
-  final User user;
-  const Conservation({ Key? key, required this.user, }) : super(key: key);
-  
-  
+class Conservation extends StatefulWidget {
+  final User targetUser;
+  const Conservation({ Key? key, required this.targetUser, }) : super(key: key);
+
+  @override
+  State<Conservation> createState() => _ConservationState();
+}
+
+void setMessage(){
+  // socket.on('message',(data){
+  //   print(data['sourceId']);
+  //   messages.add(Message(senderId: data['sourceId'], time: 'time', text: 'text'));
+  //   print(messages);
+  // });
+
+}
+
+class _ConservationState extends State<Conservation> {
+  // void setMessage(){
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -17,7 +33,7 @@ class Conservation extends StatelessWidget {
         itemCount: messages.length, // Test
         itemBuilder: (context, int index) {
           final message = messages[index]; //Test
-          bool isMe = message.sender.id == currentUser.id;
+          bool isMe = message.senderId == user.id;
           return Container(
             margin: EdgeInsets.only(top: 10),
             child: Column(
@@ -27,11 +43,11 @@ class Conservation extends StatelessWidget {
                       isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    if (!isMe)
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundImage: AssetImage(user.avatar),
-                      ),
+                    // if (!isMe)
+                    //   CircleAvatar(
+                    //     radius: 15,
+                    //     backgroundImage: AssetImage(user.avatarUrl),
+                    //   ),
                     SizedBox(
                       width: 10,
                     ),
