@@ -70,3 +70,6 @@ String report_other = "";
 
 ///Test Localhost
 String addressIP = '192.168.9.91:3000';
+
+//message
+String testsend = "";

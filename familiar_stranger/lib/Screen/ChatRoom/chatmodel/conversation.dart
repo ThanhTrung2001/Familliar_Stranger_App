@@ -1,14 +1,17 @@
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
+import 'package:familiar_stranger/Model_Test/message_model.dart';
+import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
-import 'package:familiar_stranger/models/message.dart';
+// import 'package:familiar_stranger/models/message.dart';
 
 //This class is dessign for every chatline in the chatroom
 class Conservation extends StatefulWidget {
-  final User targetUser;
+  // final User targetUser;
+  final Userr targetUser; //test
   const Conservation({ Key? key, required this.targetUser, }) : super(key: key);
 
   @override
@@ -33,7 +36,8 @@ class _ConservationState extends State<Conservation> {
         itemCount: messages.length, // Test
         itemBuilder: (context, int index) {
           final message = messages[index]; //Test
-          bool isMe = message.senderId == user.id;
+          // bool isMe = message.senderId == user.id;
+          bool isMe = message.sender.id == currentUser.id;
           return Container(
             margin: EdgeInsets.only(top: 10),
             child: Column(

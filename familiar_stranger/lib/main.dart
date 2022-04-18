@@ -2,6 +2,7 @@ import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatRoom.dart';
 import 'package:familiar_stranger/Screen/Home/home.dart';
 import 'package:familiar_stranger/Screen/Login/login.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/friendList.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friend_infor.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friendmodel/friendmodel.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/profile.dart';
@@ -27,12 +28,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Main_Text,
         scaffoldBackgroundColor: Background_Color,
+        
         fontFamily: 'Roboto',
       ),
-      home: Home_Screen(), //Welcome_Screen(),
+      home: Welcome_Screen(), //Welcome_Screen(),
       onGenerateRoute: route.controller,
       //change to edit screen, when all done, comment this line again
-      initialRoute: route.login,
+      // initialRoute: route.login,
     );
   }
 }

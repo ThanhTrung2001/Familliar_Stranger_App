@@ -50,7 +50,7 @@ class _Home_BodyState extends State<Home_Body> {
   void press_start() {
     connectSocket();
     //print(targetUser.id);
-    Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
+    // Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);})); //command to test
     
     //Navigator.push(context, route);
     // setState(() {

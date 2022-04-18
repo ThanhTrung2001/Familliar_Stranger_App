@@ -1,14 +1,16 @@
 //import 'package:familiar_stranger/Model_Test/user_model.dart';
+import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/Media_Body.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_Body.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friendList.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/report.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Screen extends StatefulWidget {
   //
-  final User targetUser;
+  final Userr targetUser;
   const ChatRoom_Screen({
     Key? key,
     required this.targetUser,
@@ -16,6 +18,7 @@ class ChatRoom_Screen extends StatefulWidget {
   @override
   State<ChatRoom_Screen> createState() => _ChatRoom_ScreenState();
 }
+
 class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
     with TickerProviderStateMixin {
   @override
@@ -26,7 +29,12 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            // leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back),),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
             backgroundColor: Color.fromARGB(255, 83, 59, 91),
             title: Text(
               "ChatRoom",
@@ -34,17 +42,20 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
                   fontSize: 20.0, fontFamily: 'ZenDots', color: Main_Text),
             ),
             centerTitle: true,
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.more_horiz_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+            actions: [ // Menu popup
+              PopupMenuButton<int>(
+                  onSelected: (item) => onSelected(context, item),
+                  itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                          value: 0,
+                          child: Text('Report'),
+                        ),
+                        PopupMenuDivider(),
+                        PopupMenuItem<int>(
+                          value: 1,
+                          child: Text('Cancel'),
+                        ),
+                      ]),
             ],
             bottom: TabBar(
               indicator: BoxDecoration(
@@ -67,5 +78,18 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
         ),
       ),
     );
+  }
+}
+
+//function routing by popup menu
+void onSelected(BuildContext context, int item) {
+  switch (item) {
+    case 0:
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Report_Screen()),
+      );
+      break;
+    case 1:
+      break;
   }
 }

@@ -1,4 +1,6 @@
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
+import 'package:familiar_stranger/Model_Test/message_model.dart';
+import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/conversation.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/inputbar.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
@@ -7,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Body extends StatefulWidget {
-  final User targetUser;
+  // final User targetUser; //Main
+  final Userr targetUser;
   const ChatRoom_Body({Key? key, required this.targetUser}) : super(key: key);
 
   @override
@@ -105,6 +108,7 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                                   ),
                                 ),
                               ),
+                              onChanged: (value){testsend = value;}, // get text to send
                             ),
                           ),
                         ],
@@ -116,8 +120,11 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                   ),
                   IconButton(
                     onPressed: () {
-                      sendMessage('message', user.id, targetUser.id);
+                      // sendMessage('message', user.id, targetUser.id);
                       //print('ok');
+                      setState(() {
+                        messages.addAll([testing]);
+                      });
                     },
                     icon: Icon(
                       Icons.send,

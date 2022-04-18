@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  introduction_screen: ^3.0.1
   socket_io_client: ^1.0.2
   http: ^0.13.4 
   # flutter_custom_dialog: ^1.2.0

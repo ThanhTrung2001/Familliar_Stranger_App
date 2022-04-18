@@ -1,4 +1,7 @@
+import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
+import 'package:familiar_stranger/Model_Test/music_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
+import 'package:familiar_stranger/Screen/ChatRoom/musicmodel/musicModel.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -22,23 +25,24 @@ class _Media_BodyState extends State<Media_Body> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              IconButton(onPressed: (){loadAllSongs();}, icon: Icon(Icons.view_list, color: Colors.white,size: 30,),),
               SizedBox(
-                width: 80,
+                width: 30,
               ),
               Text(
-                "Now Playing",
+                "Now Playing...",
                 style: TextStyle(
                     color: Sub_Text, fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 30,),
-              IconButton(onPressed: (){}, icon: Icon(Icons.library_music_outlined, color: Colors.white,size: 30,),)
+              IconButton(onPressed: (){loadSelectedSongs();}, icon: Icon(Icons.library_music_outlined, color: Colors.white,size: 30,),)
             ],
           ),
           SizedBox(
             height: size.height * 0.05,
           ),
           Container(
-            height: size.height * 0.32,
+            height: size.height * 0.31,
             decoration: BoxDecoration(
               color: Sub_Text,
               shape: BoxShape.circle,
@@ -149,4 +153,99 @@ class _Media_BodyState extends State<Media_Body> {
       ),
     );
   }
+  void loadAllSongs() {
+  showModalBottomSheet(
+    backgroundColor: Color.fromARGB(255, 95, 94, 94),
+    context: context, 
+    builder: (context){
+        return Column(
+          children: <Widget>[
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                
+                Container(
+                width: 200,
+                height: 50,
+                child: Rounded_TextField_Center(
+                    onchanged: (value) {},
+                    hint: "Seacrh...",
+                    IsPassword: false,
+                    textInputType: TextInputType.text,),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  color: Main_Text,
+                  size: 30,
+                ),
+              ),
+              ],
+            ),
+            Expanded(
+                  child: ListView.separated(
+                    itemCount: AllSongs.length,
+                    itemBuilder: (context, index) { 
+                      final select = AllSongs[index];
+                      return AllSong_Model(avatar: select.avatar, name: select.name, singer: select.singer, tap: (){
+                        setState(() {
+                          SelectedSongs.add(select);
+                        });
+                      });},
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          height: 2,
+                          indent: 100,
+                          endIndent: 100,
+                          color: Colors.black,
+                        );
+                      },
+                    ),
+                    ),
+          ],
+        );
+    });
+  }
+
+  void loadSelectedSongs() {
+  showModalBottomSheet(
+    backgroundColor: Color.fromARGB(255, 95, 94, 94),
+    context: context, 
+    builder: (context){
+        return StatefulBuilder( // Use to update
+          builder: (BuildContext context, StateSetter setState) {
+            return Column(
+          children: <Widget>[
+            SizedBox(height: 10,),
+            Expanded(
+                  child: ListView.separated(
+                    itemCount: SelectedSongs.length,
+                    itemBuilder: (context, index) { 
+                      final select = SelectedSongs[index];
+                      return AllSong_Model(avatar: select.avatar, name: select.name, singer: select.singer, tap: (){
+                        setState(() {
+                          SelectedSongs.remove(select);
+                          SelectedSongs.length;
+                        });
+                      });},
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          height: 2,
+                          indent: 100,
+                          endIndent: 100,
+                          color: Colors.black,
+                        );
+                      },
+                    ),
+                    ),
+          ],
+        );
+        }
+        );
+    });
+  }
 }
+
+
