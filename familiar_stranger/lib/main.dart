@@ -28,10 +28,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Main_Text,
         scaffoldBackgroundColor: Background_Color,
-        
         fontFamily: 'Roboto',
       ),
-      home: Welcome_Screen(), //Welcome_Screen(),
+      home: Profile_Screen(), //Welcome_Screen(),
       onGenerateRoute: route.controller,
       //change to edit screen, when all done, comment this line again
       // initialRoute: route.login,

@@ -6,6 +6,7 @@ class Friend_Model extends StatelessWidget {
   final String status;
   final String avatar;
   final VoidCallback tap;
+  final VoidCallback delete;
 
   const Friend_Model({
      Key? key,
@@ -13,6 +14,7 @@ class Friend_Model extends StatelessWidget {
      required this.userName,
      required this.status,
      required this.tap,
+     required this.delete,
       }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class Friend_Model extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Main_Text,)),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.delete, color: Main_Text,)),
+                      IconButton(onPressed: delete, icon: Icon(Icons.delete, color: Main_Text,)),
                     ],
                   ),
         ),

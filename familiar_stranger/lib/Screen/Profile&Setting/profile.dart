@@ -1,3 +1,4 @@
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_Body.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ class Profile_Screen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){});});
+              },
               child: Icon(Icons.logout_rounded, color: Colors.white,),
               
             ),

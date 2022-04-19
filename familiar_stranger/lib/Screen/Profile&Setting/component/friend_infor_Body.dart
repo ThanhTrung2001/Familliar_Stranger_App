@@ -57,11 +57,11 @@ class _Friend_Info_BodyState extends State<Friend_Info_Body> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: Main_Text, press: (){}, icons: Icons.room_rounded, icon_size: 30),
+                        Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: Main_Text, press: (){}, icons: Icons.room_rounded, icon_size: 30, widthSize: size.width*0.55,backgroundColor: Transp_Color,),
                         SizedBox(height: 10,),
-                        Icon_Button_Rounded(bordercolor: Border_Color, iconcolor: Border_Color, press: (){}, icons: Icons.delete_rounded, icon_size: 30),
+                        Icon_Button_Rounded(bordercolor: Border_Color, iconcolor: Border_Color, press: (){}, icons: Icons.delete_rounded, icon_size: 30, widthSize: size.width*0.55,backgroundColor: Transp_Color,),
                         SizedBox(height: 10,),
-                        Icon_Button_Rounded(bordercolor: Colors.red, iconcolor: Colors.red, press: (){}, icons: Icons.report_rounded, icon_size: 30),
+                        Icon_Button_Rounded(bordercolor: Colors.red, iconcolor: Colors.red, press: (){}, icons: Icons.report_rounded, icon_size: 30, widthSize: size.width*0.55,backgroundColor: Transp_Color,),
                       ],
                     ),
                   ),

@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:familiar_stranger/Component/Button/Icon_ButtonRounded.dart';
 import 'package:familiar_stranger/Component/Button/borderRounded_Female_Icon_Button.dart';
 import 'package:familiar_stranger/Component/Button/borderRounded_Male_Icon_Button.dart';
 import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
 import 'package:familiar_stranger/Component/Dialog/dialog_Custom_ThreeTF.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Edit_Profile.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
+import 'package:familiar_stranger/Screen/Profile&Setting/component/friendList_Body.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +27,9 @@ class _Profile_BodyState extends State<Profile_Body> {
   //bool set_male = true;
   Color bGColorMale = Colors.green.shade300;
   Color bGCOlorFemale = Colors.pink.shade300;
-  
 
   void press_icon(){
-    setState(() {
+    this.setState(() {
       sex_male = !sex_male;
     });
   }
@@ -39,18 +41,19 @@ class _Profile_BodyState extends State<Profile_Body> {
     }
     else
     {
-      press_icon();
+        press_icon();
     }
   }
 
   void isFemale(){
     if(sex_male == false)
     {
-      
+      bGCOlorFemale = Colors.transparent;
+      bGColorMale = Colors.green.shade300;
     }
     else
     {
-      press_icon();
+            press_icon();
     }
   }
 
@@ -131,9 +134,9 @@ class _Profile_BodyState extends State<Profile_Body> {
                       SizedBox(width: size.width * 0.086,),
                       Text("Sex :", style: TextStyle(color: Main_Text, fontWeight: FontWeight.bold, fontSize: 17),),
                       SizedBox(width: size.width * 0.015,),
-                      Border_Male_Icon_Button(bordercolor: Border_Color, iconcolor: Colors.blue, press: isMale, icon_size: 25, backgroundcolor: (sex_male == true)? bGColorMale : Colors.transparent,),
-                      SizedBox(width: size.width * 0.03,),
-                      Border_Female_Icon_Button(bordercolor: Border_Color, iconcolor: Colors.red, press: isFemale, icon_size: 25, backgroundcolor: (sex_male == false)? bGCOlorFemale : Colors.transparent,),
+                       Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: male_icon_color, press:isMale, icons: Icons.male_rounded, icon_size: 30, widthSize: size.width*0.2, backgroundColor: (sex_male == true)? bGColorMale : Colors.transparent,),
+                        SizedBox(width: 10,),
+                        Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: female_icon_color, press: isFemale, icons: Icons.female_rounded, icon_size: 30, widthSize: size.width*0.2,backgroundColor: (sex_male == false)? bGCOlorFemale : Colors.transparent,),
                       ],
                     ),
           Spacer(),         
@@ -149,6 +152,46 @@ class _Profile_BodyState extends State<Profile_Body> {
               Rounded_Border_Button(text: "CANCEL", bordercolor: Sub_Text, textcolor: Sub_Text, press: (){}, horizon: 15, verti: 10),
             ]
           ),
+          // SizedBox(height: size.height*0.025,),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Text(account_name, style: TextStyle(color: Main_Text, fontSize: 20, fontWeight: FontWeight.w600)),
+          //             SizedBox(width: size.width * 0.01,),
+          //             Icon( (sex_male == true) ? Icons.male : Icons.female, color: (sex_male == true) ? male_icon_color : female_icon_color, size: 30,), // sex ?
+          //           ],
+          //         ),
+          //         SizedBox(height: size.height*0.01,),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Text("Age : $age", style: TextStyle(fontSize: 16, color: Main_Text,fontWeight: FontWeight.w500),),
+          //           ],
+          //         ),
+          //         SizedBox(height: 20,),
+          //         Expanded(
+          //           child: Column(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: [
+          //               Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: Main_Text, press: (){
+          //                 showDialog(context: context, builder: (context){ return Dialog_Edit_Profile(
+          //                   press_male: isMale,
+          //                   press_female: isFemale,
+          //                   background_male: (sex_male == true)? bGColorMale : Colors.transparent,
+          //                   background_female: (sex_male == false)? bGCOlorFemale : Colors.transparent,
+          //                   press_yes: (){
+          //                   });});
+          //               }, icons: Icons.change_circle_rounded, icon_size: 30, widthSize: size.width*0.55,
+          //               backgroundColor: Transp_Color,
+          //               ),
+          //               SizedBox(height: 10,),
+                        
+          //               Icon_Button_Rounded(bordercolor: Border_Color, iconcolor: Border_Color, press: (){}, icons: Icons.logout_rounded, icon_size: 30, widthSize: size.width*0.55, backgroundColor: Transp_Color),
+          //               // SizedBox(height: 10,),
+          //               // Icon_Button_Rounded(bordercolor: Colors.red, iconcolor: Colors.red, press: (){}, icons: Icons.report_rounded, icon_size: 30),
+          //             ],
+          //           ),
+          //         ),
           SizedBox(height: size.height* 0.025,),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,

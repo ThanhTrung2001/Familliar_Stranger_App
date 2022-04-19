@@ -1,3 +1,4 @@
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/Model_Test/message_model.dart';
 import 'package:familiar_stranger/Model_Test/user_model.dart';
@@ -114,6 +115,14 @@ class _FrindList_BodyState extends State<FrindList_Body> {
                             builder: (context) => ChatRoom_Screen(
                                   targetUser: select.sender,
                                 )));
+                  },
+                  delete: (){
+                     showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Delete him/her?" ,press_yes: (){
+                       setState(() {
+                         recentChats.remove(select);
+                         Navigator.pop(context);
+                       });
+                      });});
                   },
                 );
               },
