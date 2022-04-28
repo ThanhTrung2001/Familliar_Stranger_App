@@ -1,43 +1,39 @@
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
-import 'package:familiar_stranger/Model_Test/message_model.dart';
+// import 'package:familiar_stranger/Model_Test/message_model.dart';
 import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
-// import 'package:familiar_stranger/models/message.dart';
+import 'package:familiar_stranger/models/message.dart';
 
 //This class is dessign for every chatline in the chatroom
 class Conservation extends StatefulWidget {
   // final User targetUser;
-  final Userr targetUser; //test
+  final User targetUser; //test
   const Conservation({ Key? key, required this.targetUser, }) : super(key: key);
 
   @override
   State<Conservation> createState() => _ConservationState();
 }
 
-void setMessage(){
-  // socket.on('message',(data){
-  //   print(data['sourceId']);
-  //   messages.add(Message(senderId: data['sourceId'], time: 'time', text: 'text'));
-  //   print(messages);
-  // });
-
-}
-
 class _ConservationState extends State<Conservation> {
-  // void setMessage(){
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    messages = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        reverse: true,
         itemCount: messages.length, // Test
         itemBuilder: (context, int index) {
           final message = messages[index]; //Test
-          // bool isMe = message.senderId == user.id;
-          bool isMe = message.sender.id == currentUser.id;
+          bool isMe = message.senderId == user.id;
           return Container(
             margin: EdgeInsets.only(top: 10),
             child: Column(
@@ -47,11 +43,11 @@ class _ConservationState extends State<Conservation> {
                       isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    // if (!isMe)
-                    //   CircleAvatar(
-                    //     radius: 15,
-                    //     backgroundImage: AssetImage(user.avatarUrl),
-                    //   ),
+                    if (!isMe)
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundImage: NetworkImage(targetUser.avatarUrl),
+                      ),
                     SizedBox(
                       width: 10,
                     ),

@@ -2,6 +2,7 @@
 import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/Media_Body.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_Body.dart';
+import 'package:familiar_stranger/Screen/Home/component/Home_Body.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friendList.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/report.dart';
 import 'package:familiar_stranger/constant.dart';
@@ -10,7 +11,7 @@ import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Screen extends StatefulWidget {
   //
-  final Userr targetUser;
+  final User targetUser;
   const ChatRoom_Screen({
     Key? key,
     required this.targetUser,
@@ -31,6 +32,8 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
+                //socket.disconnect();
+                //print('object');
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back),

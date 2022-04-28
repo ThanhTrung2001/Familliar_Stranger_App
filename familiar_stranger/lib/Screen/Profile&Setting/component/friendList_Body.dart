@@ -109,12 +109,12 @@ class _FrindList_BodyState extends State<FrindList_Body> {
                   userName: select.sender.name,
                   status: "Free",
                   tap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChatRoom_Screen(
-                                  targetUser: select.sender,
-                                )));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ChatRoom_Screen(
+                    //               targetUser: select.sender,
+                    //             )));
                   },
                   delete: (){
                      showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Delete him/her?" ,press_yes: (){

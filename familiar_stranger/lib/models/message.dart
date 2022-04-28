@@ -21,13 +21,5 @@ class Message {
   });
 }
 
-late List<Message> messages = [
-    Message(
-    senderId: 'kodoku',
-    time: '12:11 AM',
-    avatar: '',
-    text: "...",
-  ),
-
-];
+late List<Message> messages = [];
 

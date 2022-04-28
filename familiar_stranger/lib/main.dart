@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       home: Profile_Screen(), //Welcome_Screen(),
       onGenerateRoute: route.controller,
       //change to edit screen, when all done, comment this line again
-      // initialRoute: route.login,
+      initialRoute: route.login,
     );
   }
 }
