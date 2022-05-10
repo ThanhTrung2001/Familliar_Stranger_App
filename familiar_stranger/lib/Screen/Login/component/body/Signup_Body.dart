@@ -10,6 +10,7 @@ import 'package:familiar_stranger/Screen/Login/component/login_BG.dart';
 import 'package:familiar_stranger/Screen/Login/component/check/login_Or_SignUp.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/user.dart';
+import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -18,23 +19,6 @@ import 'package:http/http.dart' as http;
 class SignUp_Body extends StatelessWidget {
   const SignUp_Body({ Key? key }) : super(key: key);
 
-    Future<void> submitSignUp(phoneNumber, password) async {
-    var response = await http.post(
-      Uri.http(addressIP, 'user/signup'),
-      body: ({
-        'phonenumber': phoneNumber,
-        'password': password,
-        'username': 'unknow'
-      })
-    );
-    var jsonData = jsonDecode(response.body);
-    if(jsonData['message'] == 'create successful'){
-      print('Sign up successful');
-      //user = User.fromJson(jsonData['user']);
-    }else{
-      print('err');
-    }
-  }
 
 
   @override

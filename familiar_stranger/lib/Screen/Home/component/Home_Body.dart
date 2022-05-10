@@ -6,6 +6,7 @@ import 'package:familiar_stranger/Screen/Home/component/home_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/user.dart';
 import 'package:familiar_stranger/models/message.dart';
+import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as socketio;
@@ -24,7 +25,7 @@ class _Home_BodyState extends State<Home_Body> {
     //late socketio.Socket socket;
 
   void connectSocket() {
-    socket = socketio.io('http://192.168.0.89:3000', <String, dynamic>{
+    socket = socketio.io('http://'+addressIP, <String, dynamic>{
       'transports':['websocket'],
       'autoConnect': false,
     });
@@ -51,17 +52,17 @@ class _Home_BodyState extends State<Home_Body> {
     }
   }
 
-  Future<bool> getTargetData(targetId) async {
-    var response = await http.get(Uri.http(addressIP, 'user/' + targetId));
-    var jsonData = jsonDecode(response.body);
-    if(jsonData['message'] == 'get one'){
-      targetUser = User.fromJson(jsonData['user']);
-      return true;
-    }else{
-      print('err');
-      return false;
-    }
-  }
+  // Future<bool> getTargetData(targetId) async {
+  //   var response = await http.get(Uri.http(addressIP, 'user/' + targetId));
+  //   var jsonData = jsonDecode(response.body);
+  //   if(jsonData['message'] == 'get one'){
+  //     targetUser = User.fromJson(jsonData['user']);
+  //     return true;
+  //   }else{
+  //     print('err');
+  //     return false;
+  //   }
+  // }
 
   // void toConversation(){
   //   socket.on('toConversation', (targetData){
@@ -95,7 +96,7 @@ class _Home_BodyState extends State<Home_Body> {
         //socket.disconnect();
         //socket.destroy();
         
-        socket;
+        
         Reset();
         setState(() => timer?.cancel());
       }

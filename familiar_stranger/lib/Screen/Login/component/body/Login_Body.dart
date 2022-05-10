@@ -11,31 +11,13 @@ import 'package:familiar_stranger/Screen/Login/component/login_BG.dart';
 import 'package:familiar_stranger/Screen/Login/component/check/login_Or_SignUp.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/user.dart';
+import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 class Login_Body extends StatelessWidget {
   const Login_Body({ Key? key }) : super(key: key);
-
-  Future<bool> submitLogin(phoneNumber, password) async {
-    var response = await http.post(
-      Uri.http(addressIP, 'user/login'),
-      body: ({
-        'phonenumber': phoneNumber,
-        'password': password
-      })
-    );
-    var jsonData = jsonDecode(response.body);
-    if(jsonData['type'] == 'login successful'){
-      print('login successful');
-      user = User.fromJson(jsonData['user']);
-      return true;
-    }else{
-      print('err');
-      return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +43,8 @@ class Login_Body extends StatelessWidget {
               press: () async {
                 print (PhoneNumber + " " +Password);
                 if(await submitLogin(PhoneNumber, Password) == true){
+                  if(await getListFriend())
+                    print('get success');
                   print(user.id);
                     showDialog(
                       barrierDismissible: false, // this one prevent closing Dialog when click outside

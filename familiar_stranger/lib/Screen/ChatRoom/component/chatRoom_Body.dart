@@ -39,12 +39,12 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    socket.on('message', (data) {
-        var msg = Message(senderId: data['sourceId'], time: data['time'], text: data['message']);
-        setState(() {
-          messages.add(msg);
-        });
-    });
+    // socket.on('message', (data) {
+    //     var msg = Message(senderId: data['sourceId'], time: data['time'], text: data['message']);
+    //     setState(() {
+    //       messages.add(msg);
+    //     });
+    // });
   }  
 
   @override
