@@ -117,7 +117,7 @@ class _FrindList_BodyState extends State<FrindList_Body> {
                   userName: select.username,
                   status: (select.recentState.toString()=='true'?'Free':'Off'),
                   tap: () async {
-                    if(await getTargetData('627785ccb7a836cfd30bce54') == true){
+                    if(await getTargetData('627aa1f2eff278ff028e8c44') == true){
                       Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
                     }else{
                       print('err');
