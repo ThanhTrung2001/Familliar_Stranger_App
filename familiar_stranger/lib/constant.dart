@@ -69,7 +69,13 @@ String report_other = "";
 
 
 ///Test Localhost
-String addressIP = '192.168.3.97:3000';
+String addressIP = '10.0.128.48:3000';
 
 //message
 String testsend = "";
+
+//media
+bool isPlaying = false;
+String url = "";
+String title = "Title";
+String singer = "Singer";

@@ -32,6 +32,7 @@ dependencies:
   http: ^0.13.4 
   # flutter_custom_dialog: ^1.2.0
   progress_dialog: ^1.2.4
+  audioplayers: ^0.20.1
   flutter:
     sdk: flutter
 

@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/Model_Test/music_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
@@ -13,6 +14,40 @@ class Media_Body extends StatefulWidget {
 }
 
 class _Media_BodyState extends State<Media_Body> {
+  
+  var audioPlayer = AudioPlayer(); // playing
+  Duration start = Duration.zero; // duration when start
+  Duration end = Duration.zero; // duration of the song
+  @override
+  
+  void press_play(){
+    this.setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  void isPlay(){
+    if(isPlaying == true)
+    {
+      
+    }
+    else
+    {
+      press_play();
+    }
+  }
+
+  void isPause(){
+    if(isPlaying == false)
+    {
+      
+    }
+    else
+    {
+      press_play();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,7 +74,7 @@ class _Media_BodyState extends State<Media_Body> {
             ],
           ),
           SizedBox(
-            height: size.height * 0.05,
+            height: 10,
           ),
           Container(
             height: size.height * 0.31,
@@ -52,30 +87,27 @@ class _Media_BodyState extends State<Media_Body> {
               child: CircleAvatar(
                 backgroundImage:
                     NetworkImage('https://i.imgur.com/DSG7rkv.jpg'),
-                radius: 200.0,
+                radius: 150.0,
               ),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Text(
-            "Title.................",
+            title, //constant
             style: TextStyle(
                 color: Main_Text, fontSize: 24, fontWeight: FontWeight.w700),
           ),
           Text(
-            "Singer",
+            singer, //constant
             style: TextStyle(
                 color: Sub_Text, fontSize: 18, fontWeight: FontWeight.w700),
           ),
           //SLider in here
 
-          SizedBox(
-            height: size.height * 0.07,
-          ),
           Container(
-            height: size.height*0.165,
+            height: size.height*0.155,
             width: size.width*0.85,
             decoration: BoxDecoration(
               color: Color.fromARGB(150, 116, 88, 116),
@@ -99,36 +131,64 @@ class _Media_BodyState extends State<Media_Body> {
                     SizedBox(
                       width: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: FloatingActionButton(
-                        backgroundColor: Sub_Text,
-                        mini: true,
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.skip_previous_rounded,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(5.0),
+                    //   child: FloatingActionButton(
+                    //     backgroundColor: Sub_Text,
+                    //     mini: true,
+                    //     onPressed: () {},
+                    //     child: Icon(
+                    //       Icons.skip_previous_rounded,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                     FloatingActionButton(
                       backgroundColor: Sub_Text,
-                      onPressed: () {},
                       child: Icon(
-                        Icons.play_arrow_rounded,
+                        (isPlaying) ? Icons.play_arrow_rounded : Icons.pause_rounded,
                         color: Colors.white,
                         size: 50,
                       ),
+                       onPressed: () async{
+                         (isPlaying == false) ? isPlay() : isPause(); 
+                        if(isPlaying == true)
+                        {
+                          await audioPlayer.pause();
+                        }
+                        else
+                        {
+                          // url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+                          await audioPlayer.play(url, volume: 15);
+                        }
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: FloatingActionButton(
                         backgroundColor: Sub_Text,
-                        mini: true,
-                        onPressed: () {},
+                        onPressed: () async{
+                          if(SelectedSongs.length <= 1)
+                          {
+
+                          }
+                          else
+                          {
+                            await audioPlayer.pause();
+                            SelectedSongs.removeAt(0);
+                            setState(() {
+                              url = SelectedSongs.first.link;
+                              title = SelectedSongs.first.name;
+                              singer = SelectedSongs.first.singer;
+                            });
+                            await audioPlayer.play(url, volume: 15);
+                            isPlaying = true;
+                          }
+                        },
                         child: Icon(
                           Icons.skip_next_rounded,
                           color: Colors.white,
+                          size: 50,
                         ),
                       ),
                     ),
@@ -192,6 +252,10 @@ class _Media_BodyState extends State<Media_Body> {
                       return AllSong_Model(avatar: select.avatar, name: select.name, singer: select.singer, tap: (){
                         setState(() {
                           SelectedSongs.add(select);
+                          url = SelectedSongs.first.link;
+                          title = SelectedSongs.first.name;
+                          singer = SelectedSongs.first.singer;
+                          
                         });
                       });},
                       separatorBuilder: (context, index) {
@@ -247,5 +311,7 @@ class _Media_BodyState extends State<Media_Body> {
     });
   }
 }
+
+
 
 
