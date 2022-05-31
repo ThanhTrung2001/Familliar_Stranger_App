@@ -2,26 +2,58 @@
 import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/Media_Body.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_Body.dart';
+import 'package:familiar_stranger/Screen/Home/Home.dart';
 import 'package:familiar_stranger/Screen/Home/component/Home_Body.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/friendList.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/report.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
+import 'package:familiar_stranger/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
 
 class ChatRoom_Screen extends StatefulWidget {
   //
-  final User targetUser;
-  const ChatRoom_Screen({
+  Friend targetUser;
+  ChatRoom_Screen({
     Key? key,
     required this.targetUser,
   }) : super(key: key);
   @override
   State<ChatRoom_Screen> createState() => _ChatRoom_ScreenState();
+
+  // static void popNavigator(BuildContext context) {
+  //   Navigator.of(context).pop();
+  //   Navigator.push(context, MaterialPageRoute(builder: (context){return Home_Screen();}));
+
+  //   //Navigator.pop(context);
+  // }
 }
 
-class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
-    with TickerProviderStateMixin {
+class _ChatRoom_ScreenState extends State<ChatRoom_Screen> with TickerProviderStateMixin {
+
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    socket.on('beDisconnectRoom', (data){ 
+      messages.clear();
+      targetUser.clear();
+      Navigator.of(context, rootNavigator: true).pop();
+      print('beDisconnectRoom');
+    });
+  } 
+
+    @override
+  void dispose() {
+    super.dispose();
+    socket.off('beDisconnectRoom');
+    //print('dispose beDisconnectRoom');
+    messages.clear();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,9 +64,10 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                //socket.disconnect();
-                //print('object');
-                Navigator.pop(context);
+                socket.emit('disconnectRoom',targetUser.userId);
+                print('disconnectRoom');
+                Navigator.of(context, rootNavigator: true).pop();
+
               },
               icon: Icon(Icons.arrow_back),
             ),

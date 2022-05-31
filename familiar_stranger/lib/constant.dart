@@ -28,7 +28,7 @@ const lock_icon = Icons.lock;
 
 
 //Models
-User user = const User(id: '', phoneNumber: '',token: '');
+User user = User(id: '', phoneNumber: '',token: '');
 
 //SignUp, SignIn, Forget and Verify
 String PhoneNumber = "";
@@ -69,7 +69,7 @@ String report_other = "";
 
 
 ///Test Localhost
-String addressIP = '10.0.128.48:3000';
+String addressIP = '192.168.2.53:3000';
 
 //message
 String testsend = "";
@@ -79,3 +79,6 @@ bool isPlaying = false;
 String url = "";
 String title = "Title";
 String singer = "Singer";
+
+//bool check
+bool getTarget = false;

@@ -4,15 +4,16 @@
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
 import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:flutter/material.dart';
-import 'package:familiar_stranger/models/user.dart';
+//import 'package:familiar_stranger/models/user.dart';
 import 'package:familiar_stranger/models/message.dart';
 
 //This class is dessign for every chatline in the chatroom
 class Conservation extends StatefulWidget {
   // final User targetUser;
-  final User targetUser; //test
-  const Conservation({ Key? key, required this.targetUser, }) : super(key: key);
+  Friend targetUser; //test
+  Conservation({ Key? key, required this.targetUser, }) : super(key: key);
 
   @override
   State<Conservation> createState() => _ConservationState();
@@ -24,7 +25,8 @@ class _ConservationState extends State<Conservation> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    messages = [];
+    print('init conversation');
+    //messages = [];
   }
 
   @override

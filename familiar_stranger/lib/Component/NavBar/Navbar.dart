@@ -3,6 +3,7 @@ import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/Component/Dialog/dialog_Custom_OneTextField.dart';
 import 'package:familiar_stranger/Component/Dialog/dialog_Custom_WithIcon_Button.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
+import 'package:familiar_stranger/Screen/Login/Login.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
@@ -78,7 +79,13 @@ class Nav_Bar extends StatelessWidget {
               leading: Icon(Icons.logout_outlined, color: Main_Text,),
               title: Text("Log Out", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
               onTap: () {
-                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){});});
+                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){
+                  print('logout');
+                  socket.emit('logout',user.id);
+                  socket.off('connect');
+                  socket.disconnect();
+                  Navigator.push(context, MaterialPageRoute(builder: (context){return const Login_Screen();}));
+                });});
               },
             ),
           ],

@@ -4,8 +4,7 @@ import 'dart:convert';
 import 'package:familiar_stranger/Screen/ChatRoom/ChatRoom.dart';
 import 'package:familiar_stranger/Screen/Home/component/home_BG.dart';
 import 'package:familiar_stranger/constant.dart';
-import 'package:familiar_stranger/models/user.dart';
-import 'package:familiar_stranger/models/message.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 
@@ -22,93 +21,50 @@ class Home_Body extends StatefulWidget {
 
 class _Home_BodyState extends State<Home_Body> {
 
-    //late socketio.Socket socket;
-
-  void connectSocket() {
-    socket = socketio.io('http://'+addressIP, <String, dynamic>{
-      'transports':['websocket'],
-      'autoConnect': false,
-    });
-    socket.connect();
-    socket.emit('sigin', user.id);
-    socket.onConnect((data) {
-      print('Connected');
-      socket.on('toConversation', (targetData) {
-
-        //press_start();
-
-        print('to conversation');
-        toConversation(targetData[0]);
-      });
-    });
-  }
-
-  void toConversation(id) async {
+  Future<void> toConversation(id) async {
     if(await getTargetData(id) == true){
-      print('123');
+      print(targetUser.userId);
       Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
     }else{
       print('err');
     }
   }
 
-  // Future<bool> getTargetData(targetId) async {
-  //   var response = await http.get(Uri.http(addressIP, 'user/' + targetId));
-  //   var jsonData = jsonDecode(response.body);
-  //   if(jsonData['message'] == 'get one'){
-  //     targetUser = User.fromJson(jsonData['user']);
-  //     return true;
-  //   }else{
-  //     print('err');
-  //     return false;
-  //   }
-  // }
-
-  // void toConversation(){
-  //   socket.on('toConversation', (targetData){
-  //     targetUser = User.fromJson({
-  //       "_id": "625819d1e3fa573f5838629a",
-  //       "username": "Di Hun",
-  //       "phoneNumber": "0938085588",
-  //       "avatarUrl": "https://res.cloudinary.com/fs-app/image/upload/v1650100065/lmns2fwar7jvflmqjwvs.png",
-  //       "age": "21",
-  //       "sex": "female"
-  //     });
-  //     Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
-  //   });
-  // }
-
   //Press Button
   bool start = true;
   void press_start() {
     
-    //print(targetUser.id);
-    //Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);})); //command to test
-    
-    setState(() {
-      start = !start;
-      if (start == false) {
-        connectSocket();
-        socket.emit("connectId",user.id);
-        startTimer();
-      } else {
-        socket.emit("deleteId",user.id);
-        //socket.disconnect();
-        //socket.destroy();
+    if(mounted){
+      setState(() {
+        start = !start;
+        if (start == false) {
+          print('start');
+          socket.emit("connectId",user.id);
+          startTimer();
+        } else {
+          socket.emit("deleteId",user.id);        
         
-        
-        Reset();
-        setState(() => timer?.cancel());
-      }
-    });
+          Reset();
+          //setState(() => timer?.cancel());
+        }
+      });
+    }else{
+      print('mounted err1');
+    }
   }
 
   //Timer
   Duration duration = Duration();
-  Timer? timer;
+  late Timer timer;
   @override
   void initState() {
     super.initState();
+    socket.on('toConversation', (targetData) {
+      Reset();
+      //print(targetData);
+      toConversation(targetData[0]);
+    });
+
     // startTimer();
   }
 
@@ -123,12 +79,17 @@ class _Home_BodyState extends State<Home_Body> {
 
   void Reset() {
     setState(() {
+      print('reset');
+      if(start == false) {
+        start = true;
+      }
+      timer.cancel();
       duration = Duration();
     });
   }
 
   void Stop() {
-    setState(() => timer?.cancel());
+    setState(() => timer.cancel());
   }
 
   void Continue() {}

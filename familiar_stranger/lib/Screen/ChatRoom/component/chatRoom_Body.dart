@@ -1,10 +1,13 @@
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
 // import 'package:familiar_stranger/Model_Test/message_model.dart';
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
+import 'package:familiar_stranger/Screen/ChatRoom/ChatRoom.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/conversation.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/chatmodel/inputbar.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
+import 'package:familiar_stranger/Screen/Home/Home.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
 import 'package:familiar_stranger/models/message.dart';
@@ -12,7 +15,7 @@ import 'package:socket_io_client/socket_io_client.dart';
 
 class ChatRoom_Body extends StatefulWidget {
   // final User targetUser; //Main
-  final User targetUser;
+  final Friend targetUser;
   const ChatRoom_Body({Key? key, required this.targetUser}) : super(key: key);
 
   @override
@@ -39,13 +42,26 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // socket.on('message', (data) {
-    //     var msg = Message(senderId: data['sourceId'], time: data['time'], text: data['message']);
-    //     setState(() {
-    //       messages.add(msg);
-    //     });
-    // });
+    socket.on('message', (data) {
+      print('on message successful');
+      var msg = Message(senderId: data['sourceId'], time: data['time'], text: data['message']);
+      if(mounted){
+        setState(() {
+          print(msg.text);
+          messages.add(msg);
+        });
+      }else{
+        print('mounted err 2');
+      }
+    });
   }  
+
+  @override
+  void dispose() {
+    super.dispose();
+    socket.off('message');
+    //print('dispose message');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,12 +159,15 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                     onPressed: () {
                       DateTime now = DateTime.now();
                       String time = now.toString().substring(10,16);
-                      if(sendMessage(testsend, user.id, targetUser.id, time)) {
+                      if(sendMessage(testsend, user.id, targetUser.userId, time)) {
                         var msg = Message(senderId: user.id, time: time, text: testsend);
-                        setState(() {
-                          messages.add(msg);
-                          testsend = '';
-                        });
+                        if(mounted){
+                          setState(() {
+                            messages.add(msg);
+                          });
+                        }else{
+                          print('mounted err 3');
+                        }
                       }
                     },
                     icon: Icon(

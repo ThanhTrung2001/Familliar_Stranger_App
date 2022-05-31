@@ -12,12 +12,11 @@ import 'package:familiar_stranger/Screen/Login/component/check/login_Or_SignUp.d
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/user.dart';
 import 'package:familiar_stranger/network/restApi.dart';
+import 'package:familiar_stranger/network/socket.dart';
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http;
-
 class Login_Body extends StatelessWidget {
-  const Login_Body({ Key? key }) : super(key: key);
+  const Login_Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,52 +27,80 @@ class Login_Body extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: size.height*0.32,),
-          Rounded_TextField_Input(label: "PhoneNumber",onchanged: (value){PhoneNumber = value;},),
-          SizedBox(height: size.height*0.015,),
-          Rounded_TextField_Password(label: "Password",onchanged: (value){Password = value;},),
-          SizedBox(height: size.height*0.05,),
+          SizedBox(
+            height: size.height * 0.32,
+          ),
+          Rounded_TextField_Input(
+            label: "PhoneNumber",
+            onchanged: (value) {
+              PhoneNumber = value;
+            },
+          ),
+          SizedBox(
+            height: size.height * 0.015,
+          ),
+          Rounded_TextField_Password(
+            label: "Password",
+            onchanged: (value) {
+              Password = value;
+            },
+          ),
+          SizedBox(
+            height: size.height * 0.05,
+          ),
           //Login Event and Dialog_Loading, Error, Success showing
           Rounded_Border_Button(
-            horizon: 30.0, 
-            verti: 15.0,
-            text: "LOG IN",
-            bordercolor: Border_Color,
-            textcolor: Sub_Text,
+              horizon: 30.0,
+              verti: 15.0,
+              text: "LOG IN",
+              bordercolor: Border_Color,
+              textcolor: Sub_Text,
               press: () async {
-                print (PhoneNumber + " " +Password);
-                if(await submitLogin(PhoneNumber, Password) == true){
-                  if(await getListFriend())
-                    print('get success');
-                  print(user.id);
-                    showDialog(
-                      barrierDismissible: false, // this one prevent closing Dialog when click outside
+                print(PhoneNumber + " " + Password);
+                if (await submitLogin(PhoneNumber, Password) == true) {
+                  connectSocket();
+                  if (await getAllSongs()) print('get all song');
+
+                  if (await getListFriend()) print('get list friend');
+                  //print(user.id);
+                  showDialog(
+                      barrierDismissible:
+                          false, // this one prevent closing Dialog when click outside
                       context: context,
                       builder: (context) {
-                      //Time delay for Loading Dialog to get the result from login
-                        Future.delayed(Duration(seconds: 3), (){
+                        //Time delay for Loading Dialog to get the result from login
+                        Future.delayed(Duration(seconds: 3), () {
                           Navigator.of(context).pop();
-                          Navigator.push(context, MaterialPageRoute(builder: (context){return Home_Screen();}));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Home_Screen();
+                          }));
                         });
-                      return Dialog_Custom_Loading(dialog_content: "Loading...", dialog_image_link: 'assets/Icons/Loading_Sign.png',);
-                      }
-                    );
+                        return Dialog_Custom_Loading(
+                          dialog_content: "Loading...",
+                          dialog_image_link: 'assets/Icons/Loading_Sign.png',
+                        );
+                      });
                 }
-              }
-          ),
+              }),
 
-          SizedBox(height: size.height*0.05,),
-          Check_LogIn_Or_SignUp( 
-            press: (){Navigator.push(context, MaterialPageRoute(builder: (context){return SignUp_Screen();},
-            ),
-            );},
-            ),
+          SizedBox(
+            height: size.height * 0.05,
+          ),
+          Check_LogIn_Or_SignUp(
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SignUp_Screen();
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
-
-
-
-

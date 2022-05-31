@@ -9,7 +9,6 @@ import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.da
 import 'package:familiar_stranger/Screen/Profile&Setting/friendmodel/friendmodel.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/friend.dart';
-import 'package:familiar_stranger/models/user.dart';
 import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
 class User {
-  final String id, phoneNumber, userName, avatarUrl, age, sex, token;
+  late String id, phoneNumber, userName, avatarUrl, age, sex, token;
 
-  const User({
+  User({
     required this.id,
     required this.phoneNumber,
     this.age = 'sex',
@@ -20,9 +20,14 @@ class User {
       sex: json['sex'],
       token: json['token'], 
     );
+
+    // void logout(){
+    //   id = '';
+      
+    // }
 }
 
-late User targetUser;
+//late User targetUser;
 //  = User.fromJson({
 //         "_id": "625a86bebebfac808c26b967",
 //         "username": "Di Hun",
