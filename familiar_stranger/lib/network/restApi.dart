@@ -75,15 +75,15 @@ Future<bool> getTargetData(targetId) async {
   }
 }
 
-Future<bool> getAllSongs() async {
-  var response = await http.get(Uri.http(addressIP, 'music'));
-  var jsonData = jsonDecode(response.body);
-  if (jsonData['message'] == 'get all song') {
-    allSongs = [];
-    jsonData['data'].forEach((v) {
-      allSongs.add(Song.fromJson(v));
-    });
-    return true;
-  }
-  return false;
-}
+// Future<bool> getAllSongs() async {
+//   var response = await http.get(Uri.http(addressIP, 'music'));
+//   var jsonData = jsonDecode(response.body);
+//   if (jsonData['message'] == 'get all song') {
+//     allSongs = [];
+//     jsonData['data'].forEach((v) {
+//       allSongs.add(Song.fromJson(v));
+//     });
+//     return true;
+//   }
+//   return false;
+// }

@@ -28,7 +28,6 @@ class Profile_Screen extends StatelessWidget {
                 showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){});});
               },
               child: Icon(Icons.logout_rounded, color: Colors.white,),
-              
             ),
           )
         ],

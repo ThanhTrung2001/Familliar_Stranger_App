@@ -59,8 +59,7 @@ class Login_Body extends StatelessWidget {
                 print(PhoneNumber + " " + Password);
                 if (await submitLogin(PhoneNumber, Password) == true) {
                   connectSocket();
-                  if (await getAllSongs()) print('get all song');
-
+                  // if (await getAllSongs()) print('get all song');
                   if (await getListFriend()) print('get list friend');
                   //print(user.id);
                   showDialog(

@@ -7,7 +7,6 @@ class SignUp_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView( 
       child: SignUp_Body(),
       ),

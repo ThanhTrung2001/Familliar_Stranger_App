@@ -11,6 +11,7 @@ import 'package:familiar_stranger/Screen/Profile&Setting/component/friendList_Bo
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -85,7 +86,7 @@ class _Profile_BodyState extends State<Profile_Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Profile_PG(
-      child: Column(
+      child: Column( 
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
@@ -94,7 +95,9 @@ class _Profile_BodyState extends State<Profile_Body> {
                   Text("UID : " + user.id , style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Main_Text),),
                   SizedBox(width: size.width* 0.01,),
                   IconButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Clipboard.setData(ClipboardData(text: user.id));
+                        },
                         icon: const Icon(Icons.copy, color: Main_Text,), iconSize: 20,),
                     ],
                   ),
@@ -152,46 +155,6 @@ class _Profile_BodyState extends State<Profile_Body> {
               Rounded_Border_Button(text: "CANCEL", bordercolor: Sub_Text, textcolor: Sub_Text, press: (){}, horizon: 15, verti: 10),
             ]
           ),
-          // SizedBox(height: size.height*0.025,),
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: [
-          //             Text(account_name, style: TextStyle(color: Main_Text, fontSize: 20, fontWeight: FontWeight.w600)),
-          //             SizedBox(width: size.width * 0.01,),
-          //             Icon( (sex_male == true) ? Icons.male : Icons.female, color: (sex_male == true) ? male_icon_color : female_icon_color, size: 30,), // sex ?
-          //           ],
-          //         ),
-          //         SizedBox(height: size.height*0.01,),
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: [
-          //             Text("Age : $age", style: TextStyle(fontSize: 16, color: Main_Text,fontWeight: FontWeight.w500),),
-          //           ],
-          //         ),
-          //         SizedBox(height: 20,),
-          //         Expanded(
-          //           child: Column(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Icon_Button_Rounded(bordercolor: Main_Text, iconcolor: Main_Text, press: (){
-          //                 showDialog(context: context, builder: (context){ return Dialog_Edit_Profile(
-          //                   press_male: isMale,
-          //                   press_female: isFemale,
-          //                   background_male: (sex_male == true)? bGColorMale : Colors.transparent,
-          //                   background_female: (sex_male == false)? bGCOlorFemale : Colors.transparent,
-          //                   press_yes: (){
-          //                   });});
-          //               }, icons: Icons.change_circle_rounded, icon_size: 30, widthSize: size.width*0.55,
-          //               backgroundColor: Transp_Color,
-          //               ),
-          //               SizedBox(height: 10,),
-                        
-          //               Icon_Button_Rounded(bordercolor: Border_Color, iconcolor: Border_Color, press: (){}, icons: Icons.logout_rounded, icon_size: 30, widthSize: size.width*0.55, backgroundColor: Transp_Color),
-          //               // SizedBox(height: 10,),
-          //               // Icon_Button_Rounded(bordercolor: Colors.red, iconcolor: Colors.red, press: (){}, icons: Icons.report_rounded, icon_size: 30),
-          //             ],
-          //           ),
-          //         ),
           SizedBox(height: size.height* 0.025,),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,

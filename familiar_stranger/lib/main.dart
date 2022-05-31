@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Background_Color,
         fontFamily: 'Roboto',
       ),
-      home: Profile_Screen(), //Welcome_Screen(),
+      home: Welcome_Screen(), //Welcome_Screen(),
       onGenerateRoute: route.controller,
       //change to edit screen, when all done, comment this line again
       initialRoute: route.login,

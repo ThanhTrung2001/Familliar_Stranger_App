@@ -24,6 +24,7 @@ class Nav_Bar extends StatelessWidget {
               color: Color.fromARGB(255, 83, 59, 91),
               child: Column(
                 children: <Widget>[
+                  SizedBox(height: 35,),
                   Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

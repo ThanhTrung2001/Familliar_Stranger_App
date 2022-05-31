@@ -382,8 +382,17 @@ class _Media_BodyState extends State<Media_Body> {
                               }
                             }
                             setState(() {
-                              selectedSongs.remove(select);
-                              selectedSongs.length;
+                              if(select == selectedSongs.first)
+                              {
+                                url = "";
+                              }
+                              else
+                              {
+                                selectedSongs.remove(select);
+                                selectedSongs.length;
+                                url = selectedSongs.first.link;
+                              }
+                              
                             });
                           });
                     },

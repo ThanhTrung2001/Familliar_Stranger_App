@@ -1,4 +1,5 @@
 import 'package:familiar_stranger/Component/NavBar/navbar.dart';
+
 import 'package:familiar_stranger/Screen/Home/component/home_Body.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,9 @@ class Home_Screen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                
+              },
               child: Icon(Icons.notifications, color: Colors.white,),
             ),
           )
