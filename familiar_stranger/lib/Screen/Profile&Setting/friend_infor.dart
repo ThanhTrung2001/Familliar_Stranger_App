@@ -1,9 +1,11 @@
 import 'package:familiar_stranger/Screen/Profile&Setting/component/friend_infor_Body.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:flutter/material.dart';
 
 class Friend_Infor_Screen extends StatelessWidget {
-  const Friend_Infor_Screen({ Key? key }) : super(key: key);
+  Friend targetUser;
+  Friend_Infor_Screen({ Key? key, required this.targetUser, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class Friend_Infor_Screen extends StatelessWidget {
         // ],
         ),  
       ),
-      body: Friend_Info_Body(),
+      body: Friend_Info_Body(targetUser: targetUser,),
       
     );
   }
