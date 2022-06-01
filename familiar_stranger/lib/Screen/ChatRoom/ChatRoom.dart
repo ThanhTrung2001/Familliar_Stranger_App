@@ -1,4 +1,5 @@
 //import 'package:familiar_stranger/Model_Test/user_model.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/Model_Test/user_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/Media_Body.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_Body.dart';
@@ -64,10 +65,12 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen> with TickerProviderSt
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                socket.emit('disconnectRoom',targetUser.userId);
-                print('disconnectRoom');
-                Navigator.of(context, rootNavigator: true).pop();
-
+                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "You sure want to quit?" ,press_yes: (){
+                  socket.emit('disconnectRoom',targetUser.userId);
+                  print('disconnectRoom');
+                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.of(context, rootNavigator: true).pop();
+                });});
               },
               icon: Icon(Icons.arrow_back),
             ),
@@ -122,7 +125,7 @@ void onSelected(BuildContext context, int item) {
   switch (item) {
     case 0:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Report_Screen()),
+        MaterialPageRoute(builder: (context) => Report_Screen(targetUser: targetUser,)),
       );
       break;
     case 1:

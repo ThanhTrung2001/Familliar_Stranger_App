@@ -117,7 +117,7 @@ class _Profile_BodyState extends State<Profile_Body> {
                     Container(
                       width: 280,
                       height: 50,
-                      child: Rounded_TextField_Center(textInputType: TextInputType.name, IsPassword: false,hint: user.userName, onchanged: (value){account_name = value;},)
+                      child: Rounded_TextField_Center(textInputType: TextInputType.name, IsPassword: false,hint: user.userName, onchanged: (value){account_name = value;},validate: false,)
                       ),
                     ],
                     ),
@@ -128,7 +128,7 @@ class _Profile_BodyState extends State<Profile_Body> {
                       Container(
                         width: 120,
                         height: 70,
-                        child: Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword: false,hint: user.age, onchanged: (value){age = value;},)
+                        child: Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword: false,hint: user.age, onchanged: (value){age = value;}, validate: false,)
                         ),
                       ],
                     ),

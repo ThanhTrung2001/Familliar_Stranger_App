@@ -6,6 +6,7 @@ class Rounded_TextField_Center extends StatelessWidget {
   final ValueChanged onchanged;
   final String hint;
   final bool IsPassword;
+  final bool validate;
   final TextInputType textInputType;
   const Rounded_TextField_Center({
     Key? key,
@@ -13,6 +14,7 @@ class Rounded_TextField_Center extends StatelessWidget {
     required this.hint,
     required this.IsPassword,
     required this.textInputType,
+    required this.validate,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class Rounded_TextField_Center extends StatelessWidget {
         ),
         hintText: hint, hintStyle: TextStyle(color: Sub_Text, fontSize: 15),
         fillColor: Colors.transparent,
+        errorText: validate ? 'Value Can\'t Be Empty' : null,
     ),
       ),
     );

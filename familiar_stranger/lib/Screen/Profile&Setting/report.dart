@@ -1,9 +1,14 @@
 import 'package:familiar_stranger/Screen/Profile&Setting/component/report_body.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:flutter/material.dart';
 
 class Report_Screen extends StatelessWidget {
-  const Report_Screen({ Key? key }) : super(key: key);
+  Friend targetUser;
+  Report_Screen({
+     Key? key,
+      required this.targetUser,
+     }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class Report_Screen extends StatelessWidget {
         // ],
         ),  
       ),
-      body: Report_Body(),
+      body: Report_Body(targetUser: targetUser,),
     );
   }
 }

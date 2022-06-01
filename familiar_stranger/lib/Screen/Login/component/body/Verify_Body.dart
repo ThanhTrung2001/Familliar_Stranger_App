@@ -6,12 +6,37 @@ import 'package:familiar_stranger/Screen/Login/component/login_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 
-class Verify_Body extends StatelessWidget {
+
+class Verify_Body extends StatefulWidget {
   const Verify_Body({ Key? key }) : super(key: key);
+
+  @override
+  State<Verify_Body> createState() => _Verify_BodyState();
+}
+
+class _Verify_BodyState extends State<Verify_Body> {
+  bool _validate = false;
+
+   void checkNull() //Check Input Null or Not
+  {
+      if(VerifyCode == "")
+      {
+        this.setState(() {
+          _validate = true;
+      });
+      }
+      else
+      {
+        this.setState(() {
+          _validate = false;
+        });
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    VerifyCode = "";
     return Login_BG(
       child: Column(
          mainAxisAlignment: MainAxisAlignment.center,
@@ -22,9 +47,11 @@ class Verify_Body extends StatelessWidget {
                       child: Text("Please Enter the Code that have send to your phone :",style: TextStyle(color: Main_Text, fontSize: 14, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                     ),
           SizedBox(height: size.height*0.15,),          
-          Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword : true,hint: "_ _ _ _" ,onchanged: (value){VerifyCode = value;},),
+          Rounded_TextField_Center(textInputType: TextInputType.number,IsPassword : true,hint: "_ _ _ _" ,onchanged: (value){VerifyCode = value;}, validate: _validate,),
           SizedBox(height: size.height*0.025,),
-          Rounded_Border_Button(text: "VERIFY", bordercolor: Border_Color, textcolor: Main_Text, press: (){}, horizon: 30.0, verti: 15.0),
+          Rounded_Border_Button(text: "VERIFY", bordercolor: Border_Color, textcolor: Main_Text, press: (){
+            checkNull();
+          }, horizon: 30.0, verti: 15.0),
           OrDivider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

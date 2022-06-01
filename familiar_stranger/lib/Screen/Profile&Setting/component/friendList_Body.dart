@@ -92,7 +92,8 @@ class _FrindList_BodyState extends State<FrindList_Body> {
                     onchanged: (value) {},
                     hint: "Seacrh...",
                     IsPassword: false,
-                    textInputType: TextInputType.text),
+                    textInputType: TextInputType.text,
+                    validate: false,),
               ),
               IconButton(
                 onPressed: () {},

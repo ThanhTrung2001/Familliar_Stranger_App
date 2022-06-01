@@ -68,6 +68,17 @@ class Nav_Bar extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, route.friend),
                 
             ),
+
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 35, top: 10),
+              leading: Icon(Icons.add_circle_rounded, color: Main_Text,),
+              title: Text("Add Friend", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
+              onTap: () => showDialog(context: context, builder: (context){
+                return Dialog_Input_One(press_yes: (){
+                  //use UID Friend in consstantt to add friend
+                });
+              }),
+            ),
           
             ListTile(
               contentPadding: EdgeInsets.only(left: 35, top: 10),

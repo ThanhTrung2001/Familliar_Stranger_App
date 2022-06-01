@@ -1,12 +1,19 @@
 import 'package:familiar_stranger/Component/Button/rounded_Border.dart';
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_BigIcon_NoButton.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/Component/TextField/Report/multiLine_textfield.dart';
+import 'package:familiar_stranger/Screen/Home/home.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/models/friend.dart';
 import 'package:flutter/material.dart';
 
 class Report_Body extends StatefulWidget {
-  const Report_Body({Key? key}) : super(key: key);
+  Friend targetUser;
+  Report_Body({
+    Key? key,
+    required this.targetUser,
+  }) : super(key: key);
 
   @override
   State<Report_Body> createState() => _Report_BodyState();
@@ -165,7 +172,26 @@ class _Report_BodyState extends State<Report_Body> {
                                   text: "SEND",
                                   bordercolor: Main_Text,
                                   textcolor: Main_Text,
-                                  press: () {},
+                                  press: () {
+                                    socket.emit('disconnectRoom',targetUser.userId);
+                                    print('disconnectRoom');
+                                    showDialog(
+                                    // barrierDismissible:
+                                    //     false, // this one prevent closing Dialog when click outside
+                                    context: context,
+                                    builder: (context) {
+                                      Future.delayed(Duration(seconds: 3), () {
+                                      Navigator.of(context).pop();
+                                      Navigator.push(context, MaterialPageRoute(builder: (context){return const Home_Screen();}));
+                                    });
+                                      //Time delay for Loading Dialog to get the result from login
+                                      return Dialog_BigIcon_NoButton(
+                                        dialog_content: "Report Complete!",
+                                        dialog_image_link: 'assets/Icons/Check_Circle.png',
+                                      );
+                                    });
+                                    
+                                  },
                                   horizon: 30,
                                   verti: 18),
                               SizedBox(
@@ -175,7 +201,9 @@ class _Report_BodyState extends State<Report_Body> {
                                   text: "CANCEL",
                                   bordercolor: Sub_Text,
                                   textcolor: Sub_Text,
-                                  press: () {},
+                                  press: () {
+                                    Navigator.of(context, rootNavigator: true).pop();
+                                  },
                                   horizon: 21,
                                   verti: 18),
                             ],

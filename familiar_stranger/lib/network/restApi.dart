@@ -23,7 +23,7 @@ Future<bool> submitLogin(phoneNumber, password) async {
   }
 }
 
-Future<void> submitSignUp(phoneNumber, password) async {
+Future<bool> submitSignUp(phoneNumber, password) async {
   var response = await http.post(Uri.http(addressIP, 'user/signup'),
       body: ({
         'phonenumber': phoneNumber,
@@ -33,9 +33,11 @@ Future<void> submitSignUp(phoneNumber, password) async {
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'create successful') {
     print('Sign up successful');
+    return true;
     //user = User.fromJson(jsonData['user']);
   } else {
     print('Sign up err');
+    return false;
   }
 }
 
@@ -75,15 +77,15 @@ Future<bool> getTargetData(targetId) async {
   }
 }
 
-// Future<bool> getAllSongs() async {
-//   var response = await http.get(Uri.http(addressIP, 'music'));
-//   var jsonData = jsonDecode(response.body);
-//   if (jsonData['message'] == 'get all song') {
-//     allSongs = [];
-//     jsonData['data'].forEach((v) {
-//       allSongs.add(Song.fromJson(v));
-//     });
-//     return true;
-//   }
-//   return false;
-// }
+Future<bool> getAllSongs() async {
+  var response = await http.get(Uri.http(addressIP, 'music'));
+  var jsonData = jsonDecode(response.body);
+  if (jsonData['message'] == 'get all song') {
+    allSongs = [];
+    jsonData['data'].forEach((v) {
+      allSongs.add(Song.fromJson(v));
+    });
+    return true;
+  }
+  return false;
+}

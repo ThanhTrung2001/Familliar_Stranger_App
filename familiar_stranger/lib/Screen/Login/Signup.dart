@@ -1,6 +1,7 @@
-import 'package:familiar_stranger/Screen/Login/component/body/signup_Body.dart';
-import 'package:flutter/material.dart';
 
+import 'package:familiar_stranger/Screen/Login/component/body/Signup_Body.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
 class SignUp_Screen extends StatelessWidget {
   const SignUp_Screen({ Key? key }) : super(key: key);
 
@@ -8,7 +9,7 @@ class SignUp_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView( 
-      child: SignUp_Body(),
+      child: SingUp_Body()
       ),
     );
   }

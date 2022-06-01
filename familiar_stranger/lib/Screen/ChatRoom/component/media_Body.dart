@@ -230,6 +230,8 @@ class _Media_BodyState extends State<Media_Body> {
                           url =
                               'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
                           await audioPlayer.play(url, volume: 15);
+                          var duration = await audioPlayer.setUrl(url);
+                          print(duration);
                         }
                       },
                     ),
@@ -301,6 +303,7 @@ class _Media_BodyState extends State<Media_Body> {
                       hint: "Seacrh...",
                       IsPassword: false,
                       textInputType: TextInputType.text,
+                      validate: false,
                     ),
                   ),
                   IconButton(
@@ -385,11 +388,13 @@ class _Media_BodyState extends State<Media_Body> {
                               if(select == selectedSongs.first)
                               {
                                 url = "";
+                                selectedSongs.remove(select);
+                                // selectedSongs.length;
                               }
                               else
                               {
                                 selectedSongs.remove(select);
-                                selectedSongs.length;
+                                // selectedSongs.length;
                                 url = selectedSongs.first.link;
                               }
                               

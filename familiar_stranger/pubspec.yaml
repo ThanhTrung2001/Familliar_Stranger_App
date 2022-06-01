@@ -33,6 +33,8 @@ dependencies:
   # flutter_custom_dialog: ^1.2.0
   progress_dialog: ^1.2.4
   audioplayers: ^0.20.1
+  # 
+  
   flutter:
     sdk: flutter
 
@@ -51,7 +53,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  
+
+# flutter_icons:
+#   imagePath: "assets/Icons/Ok_Hand.png"
+#   android: true
+#   ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,12 +71,6 @@ flutter:
   assets:
     - assets/Images/
     - assets/Icons/
-
-
-flutter_icons:
-  imagePath: "assets/Icons/Ok_Hand.png"
-  android: true
-  ios: true
 
   fonts:
     - family: UncialAntiqua
