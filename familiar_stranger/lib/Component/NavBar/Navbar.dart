@@ -5,6 +5,7 @@ import 'package:familiar_stranger/Component/Dialog/dialog_Custom_WithIcon_Button
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 import 'package:familiar_stranger/Screen/Login/Login.dart';
 import 'package:familiar_stranger/constant.dart';
+import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
 
@@ -74,7 +75,12 @@ class Nav_Bar extends StatelessWidget {
               leading: Icon(Icons.add_circle_rounded, color: Main_Text,),
               title: Text("Add Friend", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
               onTap: () => showDialog(context: context, builder: (context){
-                return Dialog_Input_One(press_yes: (){
+                return Dialog_Input_One(press_yes: ()async{
+                  if(await submitAddFriend(UIDFriend)){
+                    await getListFriend();
+                    Navigator.pop(context);
+                  }
+                  //print(UIDFriend);
                   //use UID Friend in consstantt to add friend
                 });
               }),
@@ -92,7 +98,7 @@ class Nav_Bar extends StatelessWidget {
               title: Text("Log Out", style: TextStyle(fontSize: 15,color: Main_Text, fontWeight: FontWeight.bold),),
               onTap: () {
                 showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){
-                  print('logout');
+                  submitLogout();
                   socket.emit('logout',user.id);
                   socket.off('connect');
                   socket.disconnect();

@@ -6,6 +6,7 @@ import 'package:familiar_stranger/Screen/Home/home.dart';
 import 'package:familiar_stranger/Screen/Profile&Setting/component/profile_BG.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/friend.dart';
+import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 
 class Report_Body extends StatefulWidget {
@@ -20,6 +21,16 @@ class Report_Body extends StatefulWidget {
 }
 
 class _Report_BodyState extends State<Report_Body> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cb1 = false;
+    cb2 = false;
+    cb3 = false;
+    cb4 = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -172,25 +183,39 @@ class _Report_BodyState extends State<Report_Body> {
                                   text: "SEND",
                                   bordercolor: Main_Text,
                                   textcolor: Main_Text,
-                                  press: () {
-                                    socket.emit('disconnectRoom',targetUser.userId);
-                                    print('disconnectRoom');
+                                  press: () async {
+                                    var content = '';
+                                    if (cb1 == true) content += 'Toxic';
+                                    if (cb2 == true) content += 'Dirty talk';
+                                    if (cb3 == true) content += 'Insult to Honor and Dignity';
+                                    if (cb4 == true) content += report_other;
+                                    if(content != '') {
+                                      if (await sendReport(content)) {
+                                        // socket.emit('disconnectRoom', targetUser.userId);
+                                        // print('disconnectRoom');
+                                      }
+                                    }
+
                                     showDialog(
-                                    // barrierDismissible:
-                                    //     false, // this one prevent closing Dialog when click outside
-                                    context: context,
-                                    builder: (context) {
-                                      Future.delayed(Duration(seconds: 3), () {
-                                      Navigator.of(context).pop();
-                                      Navigator.push(context, MaterialPageRoute(builder: (context){return const Home_Screen();}));
-                                    });
-                                      //Time delay for Loading Dialog to get the result from login
-                                      return Dialog_BigIcon_NoButton(
-                                        dialog_content: "Report Complete!",
-                                        dialog_image_link: 'assets/Icons/Check_Circle.png',
-                                      );
-                                    });
-                                    
+                                        // barrierDismissible:
+                                        //     false, // this one prevent closing Dialog when click outside
+                                        context: context,
+                                        builder: (context) {
+                                          Future.delayed(Duration(seconds: 3),() {
+                                            Navigator.of(context).pop();
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return const Home_Screen();
+                                            }));
+                                          });
+                                          //Time delay for Loading Dialog to get the result from login
+                                          return Dialog_BigIcon_NoButton(
+                                            dialog_content: "Report Complete!",
+                                            dialog_image_link:
+                                                'assets/Icons/Check_Circle.png',
+                                          );
+                                        });
                                   },
                                   horizon: 30,
                                   verti: 18),
@@ -202,7 +227,8 @@ class _Report_BodyState extends State<Report_Body> {
                                   bordercolor: Sub_Text,
                                   textcolor: Sub_Text,
                                   press: () {
-                                    Navigator.of(context, rootNavigator: true).pop();
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
                                   },
                                   horizon: 21,
                                   verti: 18),

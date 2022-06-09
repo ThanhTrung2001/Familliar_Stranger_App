@@ -1,6 +1,8 @@
 // import 'package:familiar_stranger/Model_Test/user_model.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:socket_io_client/socket_io_client.dart' as socketio;
 
 //Socket
@@ -69,16 +71,24 @@ String report_other = "";
 
 
 ///Test Localhost
-// String addressIP = '192.168.2.53:3000';
-String addressIP = '10.0.128.48:3000';
-//message
-String testsend = "";
+String addressIP = '192.168.2.53:3000';
+//String addressIP = '192.168.43.103:3000';
+//message + image
+String contentSend = "";
+String imageId = "";
+String imageUrl = "";
+
+//
+late XFile? image;
 
 //media
+var audioPlayer = AudioPlayer(); // playing
+
 bool isPlaying = false;
 String url = "";
 String title = "Title";
 String singer = "Singer";
+String avtSongUrl = 'https://res.cloudinary.com/fs-app/image/upload/v1654774979/abc123_wi5uu0.jpg';
 
 //bool check
 bool getTarget = false;

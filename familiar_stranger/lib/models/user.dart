@@ -19,7 +19,7 @@ class User {
       age: json['age'],
       sex: json['sex'],
       token: json['token'], 
-    );
+  );
 
     // void logout(){
     //   id = '';

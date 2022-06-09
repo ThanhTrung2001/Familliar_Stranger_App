@@ -9,6 +9,7 @@ class Message {
   final String time;
   final int? unreadCount;
   final bool? isRead;
+  final bool  isImage;
   final String text;
 
   Message({
@@ -17,7 +18,8 @@ class Message {
     required this.time,
     this.unreadCount,
     required this.text,
-    this.isRead,
+    required this.isImage,
+    this.isRead
   });
 }
 

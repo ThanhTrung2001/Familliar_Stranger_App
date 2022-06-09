@@ -10,6 +10,7 @@ import 'package:familiar_stranger/Screen/Profile&Setting/report.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/friend.dart';
 import 'package:familiar_stranger/models/message.dart';
+import 'package:familiar_stranger/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:familiar_stranger/models/user.dart';
 
@@ -31,29 +32,40 @@ class ChatRoom_Screen extends StatefulWidget {
   // }
 }
 
-class _ChatRoom_ScreenState extends State<ChatRoom_Screen> with TickerProviderStateMixin {
-
-    @override
+class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
+    with TickerProviderStateMixin {
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    socket.on('beDisconnectRoom', (data){ 
+    socket.on('beDisconnectRoom', (data) {
       messages.clear();
       targetUser.clear();
+      resetMedia();
       Navigator.of(context, rootNavigator: true).pop();
       print('beDisconnectRoom');
     });
-  } 
+  }
 
-    @override
+  @override
   void dispose() {
     super.dispose();
     socket.off('beDisconnectRoom');
     //print('dispose beDisconnectRoom');
     messages.clear();
-
+    resetMedia();
   }
-
+  void resetMedia(){
+    audioPlayer.release();
+    isPlaying = false;
+    url = "";
+    title = "Title";
+    singer = "Singer";
+    avtSongUrl = "https://res.cloudinary.com/fs-app/image/upload/v1654774979/abc123_wi5uu0.jpg";
+    
+    for (var element in allSongs) {element.select = false;}
+    selectedSongs.length = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +77,19 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen> with TickerProviderSt
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "You sure want to quit?" ,press_yes: (){
-                  socket.emit('disconnectRoom',targetUser.userId);
-                  print('disconnectRoom');
-                  Navigator.of(context, rootNavigator: true).pop();
-                  Navigator.of(context, rootNavigator: true).pop();
-                });});
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog_LogOut(
+                          title: "You sure want to quit?",
+                          press_yes: () {
+                            socket.emit('disconnectRoom', targetUser.userId);
+                            //socket.emit('disconnectMedia', targetUser.userId);
+                            print('disconnectRoom');
+                            Navigator.of(context, rootNavigator: true).pop();
+                            Navigator.of(context, rootNavigator: true).pop();
+                          });
+                    });
               },
               icon: Icon(Icons.arrow_back),
             ),
@@ -81,7 +100,8 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen> with TickerProviderSt
                   fontSize: 20.0, fontFamily: 'ZenDots', color: Main_Text),
             ),
             centerTitle: true,
-            actions: [ // Menu popup
+            actions: [
+              // Menu popup
               PopupMenuButton<int>(
                   onSelected: (item) => onSelected(context, item),
                   itemBuilder: (context) => [
@@ -125,7 +145,10 @@ void onSelected(BuildContext context, int item) {
   switch (item) {
     case 0:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Report_Screen(targetUser: targetUser,)),
+        MaterialPageRoute(
+            builder: (context) => Report_Screen(
+                  targetUser: targetUser,
+                )),
       );
       break;
     case 1:

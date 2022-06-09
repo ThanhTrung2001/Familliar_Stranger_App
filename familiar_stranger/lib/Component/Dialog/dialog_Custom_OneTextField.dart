@@ -37,7 +37,7 @@ class Dialog_Input_One extends StatelessWidget {
         SizedBox(height: 10,),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: TextField_Input_Dialog(onchanged: (value){UIDFriend = value ; print(UIDFriend); }, hint: "", IsPassword: false, textInputType: TextInputType.number),
+          child: TextField_Input_Dialog(onchanged: (value){UIDFriend = value ; }, hint: "", IsPassword: false, textInputType: TextInputType.number),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 20),

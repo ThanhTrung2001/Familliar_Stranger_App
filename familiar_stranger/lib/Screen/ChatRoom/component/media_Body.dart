@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:familiar_stranger/Component/TextField/Login/rounded_TextField_Center.dart';
 //import 'package:familiar_stranger/Model_Test/music_model.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/component/chatRoom_BG.dart';
@@ -20,39 +19,53 @@ class _Media_BodyState extends State<Media_Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print('init media');
     socket.on('addSong', (song) {
-      Song temp = Song(id: song['id'], name: song['name'], avatarUrl: song['avatarUrl'], link: song['link'], select: false, singer: song['singer']);
+      Song temp = Song(
+          id: song['id'],
+          name: song['name'],
+          avatarUrl: song['avatarUrl'],
+          link: song['link'],
+          select: false,
+          singer: song['singer']);
       setState(() {
         selectedSongs.add(temp);
         url = selectedSongs.first.link;
         title = selectedSongs.first.name;
         singer = selectedSongs.first.singer;
+        avtSongUrl = selectedSongs.first.avatarUrl;
       });
-      for (int i = 0; i < allSongs.length; i++) {
-        if (temp.id == allSongs[i].id) {
-          allSongs[i].select = true;
-          break;
-        }
-      }
+      setSelect(temp.id);
+      // for (int i = 0; i < allSongs.length; i++) {
+      //   if (temp.id == allSongs[i].id) {
+      //     allSongs[i].select = true;
+      //     break;
+      //   }
+      // }
     });
     socket.on('deleteSong', (song) {
-      Song temp = Song(id: song['id'], name: song['name'], avatarUrl: song['avatarUrl'], link: song['link'], select: true, singer: song['singer']);
-
-      for (int i = 0; i < allSongs.length; i++) {
-        if (temp.id == allSongs[i].id) {
-          allSongs[i].select = false;
-          break;
-        }
-      }
+      Song temp = Song(
+          id: song['id'],
+          name: song['name'],
+          avatarUrl: song['avatarUrl'],
+          link: song['link'],
+          select: true,
+          singer: song['singer']
+      );
+      setUnselect(temp.id);
+      // for (int i = 0; i < allSongs.length; i++) {
+      //   if (temp.id == allSongs[i].id) {
+      //     allSongs[i].select = false;
+      //     break;
+      //   }
+      // }
       //for(int i =0;i<)
       setState(() {
-        //selectedSongs.indexWhere((element) => element.id ==song['id']);
-        //print(selectedSongs);
-        //print(selectedSongs.indexWhere((element) => element.id ==song['id']));
         selectedSongs.removeAt(selectedSongs.indexWhere((element) => element.id == song['id']));
         selectedSongs.length;
       });
     });
+
     socket.on('play', (data) {
       isPlay();
       audioPlayer.play(url, volume: 15);
@@ -66,13 +79,14 @@ class _Media_BodyState extends State<Media_Body> {
   @override
   void dispose() {
     super.dispose();
+    print('dispose media');
     socket.off('addSong');
     socket.off('deleteSong');
     socket.off('play');
     socket.off('pause');
   }
 
-  var audioPlayer = AudioPlayer(); // playing
+  //var audioPlayer = AudioPlayer(); // playing
   Duration start = Duration.zero; // duration when start
   Duration end = Duration.zero; // duration of the song
   @override
@@ -95,6 +109,25 @@ class _Media_BodyState extends State<Media_Body> {
       press_play();
     }
   }
+
+  void setUnselect(id) {
+    for (int i = 0; i < allSongs.length; i++) {
+      if (id == allSongs[i].id) {
+        allSongs[i].select = false;
+        break;
+      }
+    }
+  }
+
+  void setSelect(id) {
+    for (int i = 0; i < allSongs.length; i++) {
+      if (id == allSongs[i].id) {
+        allSongs[i].select = true;
+        break;
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -153,8 +186,7 @@ class _Media_BodyState extends State<Media_Body> {
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: CircleAvatar(
-                backgroundImage:
-                    NetworkImage('https://i.imgur.com/DSG7rkv.jpg'),
+                backgroundImage: NetworkImage(avtSongUrl),
                 radius: 150.0,
               ),
             ),
@@ -226,12 +258,16 @@ class _Media_BodyState extends State<Media_Body> {
                           socket.emit('pause', targetUser.userId);
                           await audioPlayer.pause();
                         } else {
-                          socket.emit('play', targetUser.userId);
-                          url =
-                              'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-                          await audioPlayer.play(url, volume: 15);
-                          var duration = await audioPlayer.setUrl(url);
-                          print(duration);
+                          if (url != '') {
+                            socket.emit('play', targetUser.userId);
+                            //url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+                            await audioPlayer.play(url, volume: 15);
+                            //print(audioPlayer.play(url, volume: 15));
+                            var duration = await audioPlayer.setUrl(url);
+                            print(duration);
+                          } else {
+                            //add random song and play
+                          }
                         }
                       },
                     ),
@@ -243,11 +279,13 @@ class _Media_BodyState extends State<Media_Body> {
                           if (selectedSongs.length <= 1) {
                           } else {
                             await audioPlayer.pause();
+                            setUnselect(selectedSongs.first.id);
                             selectedSongs.removeAt(0);
                             setState(() {
                               url = selectedSongs.first.link;
                               title = selectedSongs.first.name;
                               singer = selectedSongs.first.singer;
+                              avtSongUrl = selectedSongs.first.avatarUrl;
                             });
                             await audioPlayer.play(url, volume: 15);
                             isPlaying = true;
@@ -333,6 +371,7 @@ class _Media_BodyState extends State<Media_Body> {
                               url = selectedSongs.first.link;
                               title = selectedSongs.first.name;
                               singer = selectedSongs.first.singer;
+                              avtSongUrl = selectedSongs.first.avatarUrl;
                             });
                             select.select = true;
                           }
@@ -378,26 +417,21 @@ class _Media_BodyState extends State<Media_Body> {
                           tap: () {
                             socket.emit('deleteSong', {select, targetUser.userId});
                             //select.select == false;
-                            for (int i = 0; i < allSongs.length; i++) {
-                              if (select.id == allSongs[i].id) {
-                                allSongs[i].select = false;
-                                break;
-                              }
-                            }
+                            setUnselect(select.id);
+                            // for (int i = 0; i < allSongs.length; i++) {
+                            //   if (select.id == allSongs[i].id) {
+                            //     allSongs[i].select = false;
+                            //     break;
+                            //   }
+                            // }
                             setState(() {
-                              if(select == selectedSongs.first)
-                              {
+                              if (select == selectedSongs.first) {
                                 url = "";
                                 selectedSongs.remove(select);
-                                // selectedSongs.length;
-                              }
-                              else
-                              {
+                              } else {
                                 selectedSongs.remove(select);
-                                // selectedSongs.length;
                                 url = selectedSongs.first.link;
                               }
-                              
                             });
                           });
                     },

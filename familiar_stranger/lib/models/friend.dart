@@ -3,14 +3,18 @@ class Friend {
   late String username;
   late String avatarUrl;
   late bool recentState;
+  late String sex;
+  late String age;
 
-  Friend({required this.userId, required this.username, required this.avatarUrl, required this.recentState});
+  Friend({required this.userId, required this.username, required this.avatarUrl, required this.recentState, required this.sex, required this.age});
 
   void clear(){
     userId = '';
     username = '';
     avatarUrl = '';
     recentState = false;
+    sex = 'male';
+    age = '';
   }
 
   Friend.fromJson(Map<String, dynamic> json) {
@@ -18,6 +22,8 @@ class Friend {
     username = json['username'];
     avatarUrl = json['avatarUrl'];
     recentState = json['recentState'];
+    sex = json['sex'];
+    age = json['age'];
   }
 }
 

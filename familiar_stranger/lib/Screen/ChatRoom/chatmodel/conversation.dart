@@ -13,15 +13,17 @@ import 'package:familiar_stranger/models/message.dart';
 class Conservation extends StatefulWidget {
   // final User targetUser;
   Friend targetUser; //test
-  Conservation({ Key? key, required this.targetUser, }) : super(key: key);
+  Conservation({
+    Key? key,
+    required this.targetUser,
+  }) : super(key: key);
 
   @override
   State<Conservation> createState() => _ConservationState();
 }
 
 class _ConservationState extends State<Conservation> {
-
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -66,11 +68,12 @@ class _ConservationState extends State<Conservation> {
                             bottomLeft: Radius.circular(isMe ? 12 : 0),
                             bottomRight: Radius.circular(isMe ? 0 : 12),
                           )),
-                      child: Text(
-                        messages[index].text,
-                        style:TextStyle(
-                            color: Main_Text),
-                      ),
+                      child: (!messages[index].isImage)
+                          ? Text(
+                              messages[index].text,
+                              style: const TextStyle(color: Main_Text),
+                            )
+                          : Image.network(messages[index].text),
                     ),
                   ],
                 ),
