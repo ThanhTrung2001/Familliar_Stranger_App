@@ -78,6 +78,9 @@ String contentSend = "";
 String imageId = "";
 String imageUrl = "";
 
+//conversation
+ScrollController scrollController = ScrollController();
+
 //
 late XFile? image;
 

@@ -34,6 +34,8 @@ class _ConservationState extends State<Conservation> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        shrinkWrap: true,
+        controller: scrollController,
         itemCount: messages.length, // Test
         itemBuilder: (context, int index) {
           final message = messages[index]; //Test

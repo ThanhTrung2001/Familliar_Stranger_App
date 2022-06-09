@@ -66,8 +66,11 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
     DateTime now = DateTime.now();
     String time = now.toString().substring(10, 16);
     if (sendMessage(contentSend, user.id, targetUser.userId, time, isImage)) {
-      
-      var msg = Message(senderId: user.id, time: time, text:(!isImage)?contentSend:imageUrl, isImage: isImage);
+      var msg = Message(
+          senderId: user.id,
+          time: time,
+          text: (!isImage) ? contentSend : imageUrl,
+          isImage: isImage);
       if (mounted) {
         setState(() {
           messages.add(msg);
@@ -118,8 +121,8 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
           children: [
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
@@ -127,55 +130,56 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                   ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
-                  child: Conservation(
-                      targetUser: widget.targetUser), //Get conservation
+                  child: Conservation(targetUser: widget.targetUser), //Get conservation
                 ),
               ),
             ),
-
+            //const Spacer(),
             //Bottom Input bar
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              //alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
               color: Colors.transparent,
-              height: 100,
+              //height: 100,
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 14),
-                      height: 60,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      //height: 60,
                       decoration: BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(
                             child: TextField(
-                              style: TextStyle(color: Main_Text, fontSize: 14),
+                              style: const TextStyle(
+                                  color: Main_Text, fontSize: 14),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Border_Color, width: 2.0),
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Border_Color,
                                     width: 3.0,
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Border_Color,
                                     width: 3.0,
                                   ),
@@ -203,16 +207,20 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   IconButton(
                     onPressed: () {
                       if (contentSend != '') {
                         setMessage(false);
+                        scrollController.animateTo(
+                            scrollController.position.maxScrollExtent,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeOut);
                       }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.send,
                       size: 30,
                       color: Sub_Text,

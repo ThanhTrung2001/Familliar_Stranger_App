@@ -73,7 +73,7 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
