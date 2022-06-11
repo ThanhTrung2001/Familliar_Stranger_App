@@ -44,5 +44,40 @@ This is An Chat App Create by 2 member from UIT - Tran Thanh Trung (19522436) &a
 - [Nguyễn Quốc Trung](https://github.com/trungnp1551)
 ## 5. Một số giao diện
 
+>Đăng nhập, Đăng ký, Quên mật khẩu
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207695-f3f518cf-f3e8-4833-9d21-912c51102a50.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207724-da20e773-20bb-44a2-9f38-c82def745dbc.jpg>
+</li>
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207729-c9a055c9-c2aa-43bc-b93a-70317d1c5a6e.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207733-3cde501d-89cf-41cd-a352-7085ef8aecd5.jpg>
+</li>
+
+>Màn hình chính
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207742-7dd961df-140a-44e9-9545-975017ec16e7.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207744-4f3e3e2a-4bd5-4995-a8d3-74516bfac8e3.jpg>
+</li>
+
+>Phòng Chat
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207757-8fd01a3f-4f1d-45c3-a102-c3e1bfab5d9e.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207758-42535b5f-c2da-4354-b74c-4eadff8cafc3.jpg>
+</li>
+  
+>Hồ sơ người dùng và Cài đặt
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207765-9bc792a2-bcd7-4450-9e6e-2082c2f105ca.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207767-30099212-d62a-4a58-8f79-d6b28a8b88a9.jpg>
+</li>
+  
+  
+>Danh sách bạn bè và Chi tiết bạn bè
+<li>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207773-e43d27a3-a766-470b-be6d-94339bbc4b40.jpg>
+<img width="300" height="650" src=https://user-images.githubusercontent.com/75150646/173207786-af517200-f810-4422-b378-a7f734d31a7b.png>
+</li>
+
 ## 6. Giấy phép sử dụng 📝
-Copyright © 2021 Tran Thanh Trung, Nguyen Quoc Trung
+Copyright © 2022 Tran Thanh Trung, Nguyen Quoc Trung
