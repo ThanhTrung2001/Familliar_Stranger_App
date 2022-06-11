@@ -10,7 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 
 Future<bool> submitLogin(phoneNumber, password) async {
-  var response = await http.post(Uri.http(addressIP, 'user/login'),
+  var response = await http.post(Uri.https(domain, 'user/login'),
       body: ({'phonenumber': phoneNumber, 'password': password}));
   var jsonData = jsonDecode(response.body);
   if (jsonData['type'] == 'login successful') {
@@ -25,7 +25,7 @@ Future<bool> submitLogin(phoneNumber, password) async {
 }
 
 Future<bool> submitSignUp(phoneNumber, password) async {
-  var response = await http.post(Uri.http(addressIP, 'user/signup'),
+  var response = await http.post(Uri.http(domain, '/user/signup'),
       body: ({
         'phonenumber': phoneNumber,
         'password': password,
@@ -43,7 +43,7 @@ Future<bool> submitSignUp(phoneNumber, password) async {
 }
 
 Future<bool> submitLogout() async {
-  var response = await http.get(Uri.http(addressIP, '/user/logout/${user.id}'));
+  var response = await http.get(Uri.http(domain, '/user/logout/${user.id}'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'log out successful') {
     print('logout');
@@ -61,7 +61,7 @@ Future<bool> submitUpdate(String username, String age) async {
   }
 
   var response = await http.post(
-      Uri.http(addressIP, 'user/${user.id}/updateinfo'),
+      Uri.http(domain, 'user/${user.id}/updateinfo'),
       body: ({'username': username, 'age': age, 'sex': sex}));
 
   var jsonData = jsonDecode(response.body);
@@ -72,7 +72,7 @@ Future<bool> submitUpdate(String username, String age) async {
 
 Future<bool> uploadAvatar(path) async {
   var request = http.MultipartRequest(
-      'POST', Uri.http(addressIP, '/user/${user.id}/upAvatar'));
+      'POST', Uri.http(domain, '/user/${user.id}/upAvatar'));
   request.files.add(await http.MultipartFile.fromPath('avatar', path));
   request.headers.addAll({
     "Content-Type": "multipart/form-data"
@@ -91,7 +91,7 @@ Future<bool> uploadAvatar(path) async {
 }
 
 Future<bool> uploadImageMessage(path) async {
-  var request = http.MultipartRequest('POST', Uri.http(addressIP, '/user/sendImageMessage'));
+  var request = http.MultipartRequest('POST', Uri.http(domain, '/user/sendImageMessage'));
   request.files.add(await http.MultipartFile.fromPath('image', path));
   request.headers.addAll({
     "Content-Type": "multipart/form-data"
@@ -113,7 +113,7 @@ Future<bool> uploadImageMessage(path) async {
 
 Future<String> changePassword(oldPass, newPass) async {
   var response = await http.post(
-      Uri.http(addressIP, '/user/${user.id}/changePassword'),
+      Uri.http(domain, '/user/${user.id}/changePassword'),
       body: ({'oldPassword': oldPass, 'newPassword': newPass}));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'Change password successful') {
@@ -127,7 +127,7 @@ Future<String> changePassword(oldPass, newPass) async {
 Future<bool> getListFriend() async {
   listFriend = [];
   var response =
-      await http.get(Uri.http(addressIP, 'user/${user.id}/getListFriend'));
+      await http.get(Uri.http(domain, '/user/${user.id}/getListFriend'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'get list friend') {
     //print('succesful');
@@ -146,7 +146,7 @@ Future<bool> getListFriend() async {
 
 Future<bool> submitAddFriend(targerId) async {
   var response = await http
-      .get(Uri.http(addressIP, 'user/${user.id}/addfriend/$targerId'));
+      .get(Uri.http(domain, '/user/${user.id}/addfriend/$targerId'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'add friend successful') {
     return true;
@@ -156,7 +156,7 @@ Future<bool> submitAddFriend(targerId) async {
 
 Future<bool> submitDeleteFriend(targerId) async {
   var response = await http
-      .delete(Uri.http(addressIP, 'user/${user.id}/deletefriend/$targerId'));
+      .delete(Uri.http(domain, '/user/${user.id}/deletefriend/$targerId'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'delete done') {
     return true;
@@ -166,7 +166,7 @@ Future<bool> submitDeleteFriend(targerId) async {
 
 Future<bool> sendReport(content) async {
   var response = await http.post(
-      Uri.http(addressIP, '/report/${user.id}/sendreport/${targetUser.userId}'),
+      Uri.http(domain, '/report/${user.id}/sendreport/${targetUser.userId}'),
       body: ({'content': content}));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'successful') {
@@ -176,7 +176,7 @@ Future<bool> sendReport(content) async {
 }
 
 Future<bool> getTargetData(targetId) async {
-  var response = await http.get(Uri.http(addressIP, 'user/$targetId'));
+  var response = await http.get(Uri.http(domain, '/user/$targetId'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'get one') {
     targetUser = Friend.fromJson(jsonData['user']);
@@ -188,7 +188,7 @@ Future<bool> getTargetData(targetId) async {
 }
 
 Future<bool> getAllSongs() async {
-  var response = await http.get(Uri.http(addressIP, 'music'));
+  var response = await http.get(Uri.http(domain, '/music'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'get all song') {
     allSongs = [];

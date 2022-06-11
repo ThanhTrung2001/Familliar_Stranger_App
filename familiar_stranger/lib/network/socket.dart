@@ -4,7 +4,7 @@ import 'package:familiar_stranger/network/restApi.dart';
 import 'package:socket_io_client/socket_io_client.dart' as socketio;
 
   void connectSocket() {
-    socket = socketio.io('http://'+addressIP, <String, dynamic>{
+    socket = socketio.io('https://'+domain, <String, dynamic>{
       'transports':['websocket'],
       'autoConnect': false,
     });
