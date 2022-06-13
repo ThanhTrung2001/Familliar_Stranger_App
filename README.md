@@ -1,5 +1,6 @@
 # Familliar_Stranger_App
 This is An Chat App Create by 2 member from UIT - Tran Thanh Trung (19522436) &amp; Nguyen Quoc Trung (19522429)
+- [BackEnd](https://github.com/trungnp1551/FS_App)
 ## 1. Chức năng chính
 
 ### Nhóm chức năng 'Đăng nhập' 
