@@ -41,6 +41,7 @@ class Rounded_TextField_Center extends StatelessWidget {
         hintText: hint, hintStyle: TextStyle(color: Sub_Text, fontSize: 15),
         fillColor: Colors.transparent,
         errorText: validate ? 'Value Can\'t Be Empty' : null,
+        contentPadding: EdgeInsets.all(10),
     ),
       ),
     );

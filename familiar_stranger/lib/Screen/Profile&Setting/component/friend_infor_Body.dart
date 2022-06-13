@@ -11,6 +11,7 @@ import 'package:familiar_stranger/models/friend.dart';
 import 'package:familiar_stranger/network/restApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Friend_Info_Body extends StatefulWidget {
   //Define Friend -> targetUser;
@@ -141,8 +142,17 @@ class _Friend_Info_BodyState extends State<Friend_Info_Body> {
                             dialog_image_link: 'assets/Icons/Check_Circle.png',
                           );
                         });
+                        Fluttertoast.showToast(
+                              msg: "Request Send!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Color.fromARGB(255, 22, 57, 153),
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                              );
                   },
-                  icons: Icons.room_rounded,
+                  icons: Icons.message_rounded,
                   icon_size: 30,
                   widthSize: size.width * 0.55,
                   backgroundColor: Transp_Color,

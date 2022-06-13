@@ -6,6 +6,7 @@ import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/friend.dart';
 import 'package:familiar_stranger/models/song.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Media_Body extends StatefulWidget {
   const Media_Body({Key? key}) : super(key: key);
@@ -368,6 +369,27 @@ class _Media_BodyState extends State<Media_Body> {
                               avtSongUrl = selectedSongs.first.avatarUrl;
                             });
                             select.select = true;
+                            Fluttertoast.showToast(
+                              msg: "Add Song successful!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Color.fromARGB(255, 22, 57, 153),
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                              );
+                          }
+                          else
+                          {
+                            Fluttertoast.showToast(
+                              msg: "Already add song to list!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Color.fromARGB(255, 22, 57, 153),
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                              );
                           }
                         });
                   },
@@ -427,6 +449,15 @@ class _Media_BodyState extends State<Media_Body> {
                                 url = selectedSongs.first.link;
                               }
                             });
+                            Fluttertoast.showToast(
+                              msg: "Delete Song from list complete!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Color.fromARGB(255, 201, 0, 0),
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                              );
                           });
                     },
                     separatorBuilder: (context, index) {

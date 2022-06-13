@@ -175,7 +175,7 @@ class _Profile_BodyState extends State<Profile_Body> {
               ),
               Container(
                   width: 120,
-                  height: 70,
+                  height: 50,
                   child: Rounded_TextField_Center(
                     textInputType: TextInputType.number,
                     IsPassword: false,

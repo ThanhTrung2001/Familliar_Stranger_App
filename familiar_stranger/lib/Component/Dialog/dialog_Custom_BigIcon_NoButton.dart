@@ -32,8 +32,8 @@ class Dialog_BigIcon_NoButton extends StatelessWidget {
       children: <Widget>[
         Image.asset(dialog_image_link,  height: 100, width: 100,),
         Padding(
-          padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 20),
-          child: Text(dialog_content, style: TextStyle(fontFamily: 'ZenDots', fontSize: 18, color: Main_Text),textAlign: TextAlign.center,),
+          padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 10),
+          child: Text(dialog_content, style: TextStyle(fontFamily: 'ZenDots', fontSize: 17, color: Main_Text),textAlign: TextAlign.center,),
           ),
       ],
     ),

@@ -21,7 +21,7 @@ class Dialog_Input_One extends StatelessWidget {
       elevation: 0,
       backgroundColor: Transp_Color,
       child: Container(
-        height: size.height * 0.25,
+        height: size.height * 0.26,
         width: size.width * 0.8,
         decoration: BoxDecoration(
           border:
@@ -45,18 +45,18 @@ class Dialog_Input_One extends StatelessWidget {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: TextField_Input_Dialog(
                     onchanged: (value) {
                       UIDFriend = value;
                     },
                     hint: "",
                     IsPassword: false,
-                    textInputType: TextInputType.number),
+                    textInputType: TextInputType.text),
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 20),
+                    EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
