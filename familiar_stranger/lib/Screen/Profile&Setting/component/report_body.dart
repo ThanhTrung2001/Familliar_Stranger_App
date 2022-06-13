@@ -184,38 +184,58 @@ class _Report_BodyState extends State<Report_Body> {
                                   bordercolor: Main_Text,
                                   textcolor: Main_Text,
                                   press: () async {
+                                    print('send report');
                                     var content = '';
-                                    if (cb1 == true) content += 'Toxic';
-                                    if (cb2 == true) content += 'Dirty talk';
-                                    if (cb3 == true) content += 'Insult to Honor and Dignity';
+                                    if (cb1 == true) content += 'Toxic ';
+                                    if (cb2 == true) content += 'Dirty talk ';
+                                    if (cb3 == true)
+                                      content += 'Insult to Honor and Dignity ';
                                     if (cb4 == true) content += report_other;
-                                    if(content != '') {
+                                    if (content != '') {
                                       if (await sendReport(content)) {
                                         // socket.emit('disconnectRoom', targetUser.userId);
-                                        // print('disconnectRoom');
+                                        print('send report');
+                                        showDialog(
+                                            // barrierDismissible:
+                                            //     false, // this one prevent closing Dialog when click outside
+                                            context: context,
+                                            builder: (context) {
+                                              Future.delayed(
+                                                  Duration(seconds: 3), () {
+                                                Navigator.of(context).pop();
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return const Home_Screen();
+                                                }));
+                                              });
+                                              //Time delay for Loading Dialog to get the result from login
+                                              return Dialog_BigIcon_NoButton(
+                                                dialog_content:
+                                                    "Report Complete!",
+                                                dialog_image_link:
+                                                    'assets/Icons/Check_Circle.png',
+                                              );
+                                            });
                                       }
-                                    }
-
-                                    showDialog(
-                                        // barrierDismissible:
-                                        //     false, // this one prevent closing Dialog when click outside
-                                        context: context,
-                                        builder: (context) {
-                                          Future.delayed(Duration(seconds: 3),() {
-                                            Navigator.of(context).pop();
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return const Home_Screen();
-                                            }));
+                                    } else {
+                                      showDialog(
+                                          // barrierDismissible:
+                                          //     false, // this one prevent closing Dialog when click outside
+                                          context: context,
+                                          builder: (context) {
+                                            Future.delayed(Duration(seconds: 3),
+                                                () {
+                                              Navigator.of(context).pop();
+                                            });
+                                            //Time delay for Loading Dialog to get the result from login
+                                            return Dialog_BigIcon_NoButton(
+                                              dialog_content: "Report failed!",
+                                              dialog_image_link:
+                                                  'assets/Icons/Cancel_Big.png',
+                                            );
                                           });
-                                          //Time delay for Loading Dialog to get the result from login
-                                          return Dialog_BigIcon_NoButton(
-                                            dialog_content: "Report Complete!",
-                                            dialog_image_link:
-                                                'assets/Icons/Check_Circle.png',
-                                          );
-                                        });
+                                    }
                                   },
                                   horizon: 30,
                                   verti: 18),

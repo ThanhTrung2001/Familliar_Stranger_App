@@ -3,6 +3,7 @@ import 'package:familiar_stranger/constant.dart';
 import 'package:flutter/material.dart';
 
 class Rounded_TextField_Input extends StatelessWidget {
+  final TextEditingController controller;
   final ValueChanged onchanged;
   final String label;
   final bool validate;
@@ -10,13 +11,15 @@ class Rounded_TextField_Input extends StatelessWidget {
     Key? key,
     required this.onchanged,
     required this.label,
-    required this.validate,
+    required this.validate, 
+    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField_Container(
       child: TextField(
+        controller: controller,
         textAlign: TextAlign.center,
         onChanged: onchanged,
         style: TextStyle(color: Main_Text, fontSize: 18, fontWeight: FontWeight.bold),

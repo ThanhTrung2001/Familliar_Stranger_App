@@ -74,6 +74,7 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
       if (mounted) {
         setState(() {
           messages.add(msg);
+          contentSend = '';
         });
       } else {
         print('mounted err 3');
@@ -85,30 +86,17 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    socket.on('message', (data) {
-      print('on message successful');
-      var msg = Message(
-          senderId: data['sourceId'],
-          time: data['time'],
-          text: data['message'],
-          isImage: data['isImage']);
-      if (mounted) {
-        setState(() {
-          print(msg.text);
-          messages.add(msg);
-        });
-      } else {
-        print('mounted err 2');
-      }
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    socket.off('message');
+    
     //print('dispose message');
   }
+
+  //
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +150,7 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                           ),
                           Expanded(
                             child: TextField(
+                              controller: controller,
                               style: const TextStyle(
                                   color: Main_Text, fontSize: 14),
                               decoration: InputDecoration(
@@ -212,6 +201,7 @@ class _ChatRoom_BodyState extends State<ChatRoom_Body> {
                   ),
                   IconButton(
                     onPressed: () {
+                      controller.clear();
                       if (contentSend != '') {
                         setMessage(false);
                         scrollController.animateTo(

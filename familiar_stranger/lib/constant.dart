@@ -13,7 +13,7 @@ const Background_Color = Colors.black;
 const Transp_Color = Colors.transparent;
 //Border
 const Border_Color = Color.fromARGB(255, 157, 104, 197);
-const Border_Checkbox =Color.fromARGB(255, 157, 104, 197);
+const Border_Checkbox = Color.fromARGB(255, 157, 104, 197);
 //Text
 const Main_Text = Colors.white;
 const Sub_Text = Color.fromARGB(255, 157, 104, 197);
@@ -28,9 +28,8 @@ const people_icon = Icons.people;
 const lock_icon = Icons.lock;
 //Timer
 
-
 //Models
-User user = User(id: '', phoneNumber: '',token: '');
+User user = User(id: '', phoneNumber: '', token: '');
 
 //SignUp, SignIn, Forget and Verify
 String PhoneNumber = "";
@@ -56,10 +55,10 @@ String avatar_link = "";
 String UIDFriend = "00000001";
 String FriendName = "Fukuro";
 bool Friend_sex_male = false;
-int FriendAge = 20; 
+int FriendAge = 20;
 const female_icon_color = Colors.red;
 const male_icon_color = Colors.green;
- // Get from Dialog_Input_One
+// Get from Dialog_Input_One
 //select
 
 //report checkbox
@@ -69,10 +68,10 @@ bool cb3 = false;
 bool cb4 = false;
 String report_other = "";
 
-
 ///Test Localhost
+//String domain = '192.168.1.49:3000';
 String domain = 'fs-app2022.herokuapp.com';
-//String addressIP = '192.168.43.103:3000';
+//String addressIP = '192.168.3.43:3000';
 //message + image
 String contentSend = "";
 String imageId = "";
@@ -80,7 +79,7 @@ String imageUrl = "";
 
 //conversation
 ScrollController scrollController = ScrollController();
-
+late bool acceptConversation ;
 //
 late XFile? image;
 
@@ -95,3 +94,9 @@ String avtSongUrl = 'https://res.cloudinary.com/fs-app/image/upload/v1654774979/
 
 //bool check
 bool getTarget = false;
+
+//setting
+bool sounds = true;
+bool vibrations = false;
+bool notifications = false;
+bool status = false;

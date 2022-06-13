@@ -23,6 +23,13 @@ class Friend_Info_Body extends StatefulWidget {
 
 class _Friend_Info_BodyState extends State<Friend_Info_Body> {
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //socket.off('acceptConversation');
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Profile_PG(
@@ -112,28 +119,25 @@ class _Friend_Info_BodyState extends State<Friend_Info_Body> {
                   iconcolor: Main_Text,
                   press: () {
                     showDialog(
-                        barrierDismissible:
-                            false, // this one prevent closing Dialog when click outside
+                        barrierDismissible: false, // this one prevent closing Dialog when click outside
                         context: context,
                         builder: (context) {
-                          Future.delayed(Duration(seconds: 5), () async {
-                            Navigator.of(context).pop();
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ChatRoom_Screen(targetUser: targetUser);
-                            }));
-                            // if(await getTargetData('627aa1f2eff278ff028e8c44') == true){
-                            //   Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
-                            // }else{
-                            //   print('err');
-                            // }
-
-                            // Navigator.push(context, MaterialPageRoute(builder: (context){return const Home_Screen();}));
+                          acceptConversation = false;
+                          if (targetUser.recentState) {
+                            socket.emit('invite', {user.id, targetUser.userId});
+                          } else {
+                            print('targer off');
+                          }
+                          Future.delayed(const Duration(seconds: 10), () async {
+                            if(!acceptConversation){
+                              print(acceptConversation);
+                              Navigator.of(context).pop();
+                            }
                           });
                           //Time delay for Loading Dialog to get the result from login
                           return Dialog_BigIcon_NoButton(
                             dialog_content:
-                                "Request!\nWait reponse for 20 seconds...",
+                                "Request!\nWait reponse for 10 seconds...",
                             dialog_image_link: 'assets/Icons/Check_Circle.png',
                           );
                         });
@@ -156,7 +160,8 @@ class _Friend_Info_BodyState extends State<Friend_Info_Body> {
                           return Dialog_LogOut(
                               title: "Delete him/her?",
                               press_yes: () async {
-                                if (await submitDeleteFriend(targetUser.userId)) {
+                                if (await submitDeleteFriend(
+                                    targetUser.userId)) {
                                   setState(() {
                                     //where to delete it from sever and back to friend list
                                     //  recentChats.remove(select);
@@ -164,7 +169,10 @@ class _Friend_Info_BodyState extends State<Friend_Info_Body> {
                                     Navigator.pop(context);
                                     Navigator.pop(context);
                                     listFriend.remove(targetUser);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {return FriendList_Screen();}));
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return FriendList_Screen();
+                                    }));
                                   });
                                 }
                               });

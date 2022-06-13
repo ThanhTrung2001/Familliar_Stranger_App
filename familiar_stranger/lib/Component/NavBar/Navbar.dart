@@ -100,7 +100,9 @@ class Nav_Bar extends StatelessWidget {
                 showDialog(context: context, builder: (context){ return Dialog_LogOut(title: "Log out?" ,press_yes: (){
                   submitLogout();
                   socket.emit('logout',user.id);
+                  socket.emit('updateState',(user.id));
                   socket.off('connect');
+                  socket.off('invite');
                   socket.disconnect();
                   Navigator.push(context, MaterialPageRoute(builder: (context){return const Login_Screen();}));
                 });});

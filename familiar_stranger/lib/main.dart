@@ -10,6 +10,7 @@ import 'package:familiar_stranger/Screen/Profile&Setting/report.dart';
 import 'package:familiar_stranger/Screen/Welcome/welcome.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/Component/NavBar/route.dart' as route;
+import 'package:familiar_stranger/network/restApi.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,76 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    print('dispose');
+    super.dispose();
+  }
+
+  //late AppLifecycleState _notification;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    // if (state == AppLifecycleState.detached ) {
+    //   if (user.id.isNotEmpty) {
+    //     submitLogout();
+    //     socket.emit('logout', user.id);
+    //     socket.off('connect');
+    //     socket.disconnect();
+    //     print('close app');
+    //   }
+    //   print('1');
+    // }
+    // if (state == AppLifecycleState.inactive ) {
+    //   print('2');
+    // }
+    // if (state == AppLifecycleState.paused ) {
+    //   if (user.id.isNotEmpty) {
+    //     submitLogout();
+    //     socket.emit('logout', user.id);
+    //     socket.off('connect');
+    //     socket.disconnect();
+    //     print('close app');
+    //   }
+
+    //   print('3');
+    // }
+    // if (state == AppLifecycleState.resumed ) {
+    //   socket.connect();
+    //   print('4');
+    // }
+
+    // final isBackground = state == AppLifecycleState.paused;
+
+    // if (isBackground) {
+    //   if (user.id.isNotEmpty) {
+    //     submitLogout();
+        // socket.emit('logout', user.id);
+        // socket.off('connect');
+        // socket.disconnect();
+    //   }
+    // }
+
+    // setState(() { _notification = state; });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

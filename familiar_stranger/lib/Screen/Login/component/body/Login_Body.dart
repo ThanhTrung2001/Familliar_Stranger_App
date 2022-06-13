@@ -38,6 +38,9 @@ class _Login_BodyState extends State<Login_Body> {
   bool _validate1 = false;
   bool _validate2 = false;
 
+  TextEditingController phonenumberController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
   void checkNull() //Check Input Null or Not
   {
       if(PhoneNumber == "" )
@@ -90,6 +93,7 @@ class _Login_BodyState extends State<Login_Body> {
             height: size.height * 0.32,
           ),
           Rounded_TextField_Input(
+            controller: phonenumberController,
             validate: _validate1,
             label: "PhoneNumber",
             onchanged: (value) {
@@ -100,6 +104,7 @@ class _Login_BodyState extends State<Login_Body> {
             height: size.height * 0.015,
           ),
           Rounded_TextField_Password(
+            controller: passController,
             validates: _validate2,
             label: "Password",
             onchanged: (value) {
@@ -117,6 +122,9 @@ class _Login_BodyState extends State<Login_Body> {
               bordercolor: Border_Color,
               textcolor: Sub_Text,
               press: () async {
+                phonenumberController.clear();
+                passController.clear();
+
                 print(PhoneNumber + " " + Password);
                 checkNull();
                 if (await submitLogin(PhoneNumber, Password) == true) {

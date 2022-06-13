@@ -20,26 +20,37 @@ class TextField_Input_Dialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container_Common(
       child: TextField(
-      maxLines: 1,
-      minLines: 1,
-      obscureText: IsPassword,
-      keyboardType: textInputType,
-      textAlign: TextAlign.center,
-      onChanged: onchanged,
-      style: TextStyle(color: Main_Text, fontSize: 18, fontWeight: FontWeight.bold),
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Main_Text, width: 3.0), borderRadius: BorderRadius.circular(10.0),
-        ), 
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Main_Text, width: 3.0,),
+        maxLines: 1,
+        minLines: 1,
+        obscureText: IsPassword,
+        keyboardType: textInputType,
+        textAlign: TextAlign.center,
+        onChanged: onchanged,
+        style: TextStyle(
+            color: Main_Text, fontSize: 18, fontWeight: FontWeight.bold),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Main_Text, width: 3.0),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: Main_Text,
+              width: 3.0,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: Main_Text,
+              width: 3.0,
+            ),
+          ),
+          hintText: hint,
+          hintStyle: TextStyle(color: Sub_Text, fontSize: 15),
+          fillColor: Colors.transparent,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Main_Text, width: 3.0,),
-        ),
-        hintText: hint, hintStyle: TextStyle(color: Sub_Text, fontSize: 15),
-        fillColor: Colors.transparent,
-    ),
       ),
     );
   }

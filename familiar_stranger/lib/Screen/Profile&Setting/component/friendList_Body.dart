@@ -33,13 +33,33 @@ class _FrindList_BodyState extends State<FrindList_Body> {
 
   @override
   void initState() {
-    print('init friend');
+    //print('init friend');
     super.initState();
+
+    // socket.on('updateState', (data) async {
+    //   listFree.clear();
+    //   listOff.clear();
+    //   await getListFriend();
+    //   for (var e in listFriend) {
+    //     (e.recentState) ? listFree.add(e) : listOff.add(e);
+    //   }
+    //   setState(() {
+    //     listDisplay = listFree;
+    //   });
+    // });
+
     for (var e in listFriend) {
       (e.recentState) ? listFree.add(e) : listOff.add(e);
     }
     listDisplay = listFree;
     //print(listFree);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // socket.off('updateState');
   }
 
   @override

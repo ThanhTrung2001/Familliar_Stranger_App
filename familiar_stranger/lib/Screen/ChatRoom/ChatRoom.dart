@@ -45,25 +45,55 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
       Navigator.of(context, rootNavigator: true).pop();
       print('beDisconnectRoom');
     });
+
+    socket.on('message', (data) {
+      print('on message successful');
+      var msg = Message(
+          senderId: data['sourceId'],
+          time: data['time'],
+          text: data['message'],
+          isImage: data['isImage']);
+      if (mounted) {
+        setState(() {
+          print(msg.text);
+          messages.add(msg);
+        });
+      } else {
+        print('mounted err 2');
+      }
+    });
+
+    
   }
 
   @override
   void dispose() {
     super.dispose();
+    socket.off('message');
     socket.off('beDisconnectRoom');
     //print('dispose beDisconnectRoom');
+    print('dispose media');
+    socket.off('addSong');
+    socket.off('deleteSong');
+    socket.off('play');
+    socket.off('pause');
+
     messages.clear();
     resetMedia();
   }
-  void resetMedia(){
+
+  void resetMedia() {
     audioPlayer.release();
     isPlaying = false;
     url = "";
     title = "Title";
     singer = "Singer";
-    avtSongUrl = "https://res.cloudinary.com/fs-app/image/upload/v1654774979/abc123_wi5uu0.jpg";
-    
-    for (var element in allSongs) {element.select = false;}
+    avtSongUrl =
+        "https://res.cloudinary.com/fs-app/image/upload/v1654774979/abc123_wi5uu0.jpg";
+
+    for (var element in allSongs) {
+      element.select = false;
+    }
     selectedSongs.length = 0;
   }
 

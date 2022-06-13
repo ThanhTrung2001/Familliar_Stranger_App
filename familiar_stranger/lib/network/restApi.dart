@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:familiar_stranger/Screen/ChatRoom/ChatRoom.dart';
 import 'package:familiar_stranger/constant.dart';
 import 'package:familiar_stranger/models/friend.dart';
+import 'package:familiar_stranger/models/setting.dart';
 import 'package:familiar_stranger/models/song.dart';
 import 'package:familiar_stranger/models/user.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,13 @@ import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 
 Future<bool> submitLogin(phoneNumber, password) async {
-  var response = await http.post(Uri.https(domain, 'user/login'),
+  var response = await http.post(Uri.http(domain, '/user/login'),
       body: ({'phonenumber': phoneNumber, 'password': password}));
   var jsonData = jsonDecode(response.body);
   if (jsonData['type'] == 'login successful') {
     user = User.fromJson(jsonData['user']);
-    print('login successful' + user.id);
-
+    print('login successful');
+    userSetting = Setting.fromJson(jsonData['setting']);
     return true;
   } else {
     print('login err');
@@ -43,7 +44,7 @@ Future<bool> submitSignUp(phoneNumber, password) async {
 }
 
 Future<bool> submitLogout() async {
-  var response = await http.get(Uri.http(domain, '/user/logout/${user.id}'));
+  var response = await http.get(Uri.http(domain, 'user/logout/${user.id}'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'log out successful') {
     print('logout');
@@ -60,13 +61,29 @@ Future<bool> submitUpdate(String username, String age) async {
     sex = 'female';
   }
 
-  var response = await http.post(
-      Uri.http(domain, 'user/${user.id}/updateinfo'),
+  var response = await http.post(Uri.http(domain, 'user/${user.id}/updateinfo'),
       body: ({'username': username, 'age': age, 'sex': sex}));
 
   var jsonData = jsonDecode(response.body);
   print(jsonData['message']);
 
+  return false;
+}
+
+Future<bool> submitUpdateSetting(Setting userSetting) async {
+  var response = await http.post(Uri.http(domain, 'user/${user.id}/updateSetting'),
+          body: ({
+            "sound": userSetting.sound.toString(),
+            "vibration": userSetting.vibration.toString(),
+            "notification": userSetting.notification.toString(),
+            "status": userSetting.status.toString()
+          }));
+
+  var jsonData = jsonDecode(response.body);
+  //print(jsonData['message']);
+  if (jsonData['message'] == 'update setting successful') {
+    return true;
+  }
   return false;
 }
 
@@ -125,12 +142,11 @@ Future<String> changePassword(oldPass, newPass) async {
 }
 
 Future<bool> getListFriend() async {
-  listFriend = [];
-  var response =
-      await http.get(Uri.http(domain, '/user/${user.id}/getListFriend'));
+  listFriend.clear();
+  var response = await http.get(Uri.http(domain, '/user/${user.id}/getListFriend'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'get list friend') {
-    //print('succesful');
+    //print('get list friend');
     if (jsonData['arrTemp'] != null) {
       listFriend = [];
       jsonData['arrTemp'].forEach((v) {
@@ -145,8 +161,8 @@ Future<bool> getListFriend() async {
 }
 
 Future<bool> submitAddFriend(targerId) async {
-  var response = await http
-      .get(Uri.http(domain, '/user/${user.id}/addfriend/$targerId'));
+  var response =
+      await http.get(Uri.http(domain, '/user/${user.id}/addfriend/$targerId'));
   var jsonData = jsonDecode(response.body);
   if (jsonData['message'] == 'add friend successful') {
     return true;

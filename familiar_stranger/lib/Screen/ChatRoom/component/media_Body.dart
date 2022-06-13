@@ -36,12 +36,6 @@ class _Media_BodyState extends State<Media_Body> {
         avtSongUrl = selectedSongs.first.avatarUrl;
       });
       setSelect(temp.id);
-      // for (int i = 0; i < allSongs.length; i++) {
-      //   if (temp.id == allSongs[i].id) {
-      //     allSongs[i].select = true;
-      //     break;
-      //   }
-      // }
     });
     socket.on('deleteSong', (song) {
       Song temp = Song(
@@ -89,9 +83,9 @@ class _Media_BodyState extends State<Media_Body> {
   //var audioPlayer = AudioPlayer(); // playing
   Duration start = Duration.zero; // duration when start
   Duration end = Duration.zero; // duration of the song
-  @override
+  
   void press_play() {
-    this.setState(() {
+    setState(() {
       isPlaying = !isPlaying;
     });
   }

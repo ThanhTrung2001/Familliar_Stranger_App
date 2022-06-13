@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:familiar_stranger/Component/Dialog/dialog_Custom_LogOut.dart';
 import 'package:familiar_stranger/Screen/ChatRoom/ChatRoom.dart';
 import 'package:familiar_stranger/Screen/Home/component/home_BG.dart';
 import 'package:familiar_stranger/constant.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as socketio;
 import 'package:http/http.dart' as http;
 
-
 class Home_Body extends StatefulWidget {
   const Home_Body({Key? key}) : super(key: key);
 
@@ -20,12 +20,16 @@ class Home_Body extends StatefulWidget {
 }
 
 class _Home_BodyState extends State<Home_Body> {
-
   Future<void> toConversation(id) async {
-    if(await getTargetData(id) == true){
+    Reset();
+    acceptConversation = true;
+    if (await getTargetData(id) == true) {
+      print(acceptConversation);
       print(targetUser.userId);
-      Navigator.push(context, MaterialPageRoute(builder: (context){return ChatRoom_Screen(targetUser: targetUser);}));
-    }else{
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return ChatRoom_Screen(targetUser: targetUser);
+      }));
+    } else {
       print('err');
     }
   }
@@ -33,22 +37,20 @@ class _Home_BodyState extends State<Home_Body> {
   //Press Button
   bool start = true;
   void press_start() {
-    
-    if(mounted){
+    if (mounted) {
       setState(() {
         start = !start;
         if (start == false) {
           print('start');
-          socket.emit("connectId",user.id);
+          socket.emit("connectId", user.id);
           startTimer();
         } else {
-          socket.emit("deleteId",user.id);        
-        
+          socket.emit("deleteId", user.id);
+
           Reset();
-          //setState(() => timer?.cancel());
         }
       });
-    }else{
+    } else {
       print('mounted err1');
     }
   }
@@ -59,13 +61,67 @@ class _Home_BodyState extends State<Home_Body> {
   @override
   void initState() {
     super.initState();
+
+    socket.on('updateState', (data) async {
+      await getListFriend();
+    });
+
+    ///init timer
+    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
+    timer.cancel();
+    duration = Duration();
+
     socket.on('toConversation', (targetData) {
       Reset();
-      //print(targetData);
       toConversation(targetData[0]);
     });
 
-    // startTimer();
+    socket.on('invite', (id) async {
+      String name = await getName(id);
+      showDialog(
+          context: context,
+          builder: (context) {
+            bool pressYes = false;
+            Future.delayed(Duration(seconds: 5), () async {
+              if (!pressYes) {
+                Navigator.of(context).pop();
+              }
+            });
+            return Dialog_LogOut(
+                title: "$name invite you",
+                press_yes: () {
+                  pressYes = true;
+                  Navigator.of(context).pop();
+                  socket.emit('acceptConversation', {user.id, id});
+                  toConversation(id);
+                });
+          });
+    });
+
+    socket.on('acceptConversation', (id) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      toConversation(id);
+    });
+  }
+
+  Future<String> getName(id) async {
+    for (int i = 0; i < listFriend.length; i++) {
+      if (listFriend[i].userId == id) {
+        return listFriend[i].username;
+      }
+    }
+    return '';
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    socket.off('toConversation');
+    socket.off('acceptConversation');
+    socket.off('invite');
+    socket.off('updateState');
   }
 
   void addTime() {
@@ -78,9 +134,10 @@ class _Home_BodyState extends State<Home_Body> {
   }
 
   void Reset() {
+    socket.emit("deleteId", user.id);
     setState(() {
       print('reset');
-      if(start == false) {
+      if (start == false) {
         start = true;
       }
       timer.cancel();
