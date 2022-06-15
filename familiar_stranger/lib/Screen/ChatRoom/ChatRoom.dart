@@ -62,8 +62,6 @@ class _ChatRoom_ScreenState extends State<ChatRoom_Screen>
         print('mounted err 2');
       }
     });
-
-    
   }
 
   @override
@@ -182,6 +180,19 @@ void onSelected(BuildContext context, int item) {
       );
       break;
     case 1:
+      showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog_LogOut(
+                title: "You sure want to quit?",
+                press_yes: () {
+                  socket.emit('disconnectRoom', targetUser.userId);
+                  //socket.emit('disconnectMedia', targetUser.userId);
+                  print('disconnectRoom');
+                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.of(context, rootNavigator: true).pop();
+                });
+          });
       break;
   }
 }

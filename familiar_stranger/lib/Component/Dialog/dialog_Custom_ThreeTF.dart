@@ -50,7 +50,7 @@ class Dialog_Input_Three extends StatelessWidget {
         ),
 
         Padding(
-          padding: EdgeInsets.only(top: 20, right: 10, left: 10, bottom: 20),
+          padding: EdgeInsets.only(top: 20, right: 10, left: 10, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
