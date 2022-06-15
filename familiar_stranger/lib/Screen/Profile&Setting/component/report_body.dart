@@ -203,11 +203,12 @@ class _Report_BodyState extends State<Report_Body> {
                                               Future.delayed(
                                                   Duration(seconds: 3), () {
                                                 Navigator.of(context).pop();
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return const Home_Screen();
-                                                }));
+                                                Navigator.of(context).pop();
+                                                // Navigator.push(context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) {
+                                                //   return const Home_Screen();
+                                                // }));
                                               });
                                               //Time delay for Loading Dialog to get the result from login
                                               return Dialog_BigIcon_NoButton(
